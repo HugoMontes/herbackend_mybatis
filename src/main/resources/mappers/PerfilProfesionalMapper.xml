@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--*
+*
+*  @author Al?a?o Dur?n
+*
+*-->
+
+<mapper namespace="com.cofar.hermes.kardex.repository.PerfilProfesionalRepository">
+    <resultMap id="PerfilProfesionalMap" type="com.cofar.hermes.kardex.models.PerfilProfesional">
+
+        <id column="id_perfil_profesional" property="idPerfilProfesional" />
+        <result column="institucion" property="institucion" />
+        <result column="colegas" property="colegas" />
+        <result column="usuario_registro" property="usuarioRegistro" />
+        <result column="usuario_modificacion" property="usuarioModificacion" />
+        <result column="fecha_registro" property="fechaRegistro" />
+        <result column="fecha_modificacion" property="fechaModificacion" />
+        <result column="estado" property="estado" />
+    </resultMap>
+
+    <select  id = "listarPorParametros" resultMap = "PerfilProfesionalMap" parameterType="com.cofar.hermes.kardex.models.PerfilProfesional">
+        SELECT * FROM HER_PERFIL_PROFESIONAL WHERE 1=1
+        <if test="institucion != null">
+            and institucion =#{institucion}
+        </if>
+        <if test="colegas != null">
+            and colegas =#{colegas}
+        </if>
+        <if test="usuarioRegistro != null">
+            and usuario_registro =#{usuarioRegistro}
+        </if>
+        <if test="usuarioModificacion != null">
+            and usuario_modificacion =#{usuarioModificacion}
+        </if>
+        <if test="fechaRegistro != null">
+            and fecha_registro =#{fechaRegistro}
+        </if>
+        <if test="fechaModificacion != null">
+            and fecha_modificacion =#{fechaModificacion}
+        </if>
+        <if test="estado != null">
+            and estado =#{estado}
+        </if>
+
+    </select>
+
+    <select  id = "listar" resultMap = "PerfilProfesionalMap" >
+        SELECT * FROM HER_PERFIL_PROFESIONAL 
+    </select>
+    <select  id = "obtener" resultMap = "PerfilProfesionalMap" parameterType="java.lang.Integer">
+        SELECT * FROM HER_PERFIL_PROFESIONAL WHERE ESTADO=1 AND id_perfil_profesional=#{0}
+    </select>
+
+    <insert id="registrar" parameterType="com.cofar.hermes.kardex.models.PerfilProfesional">
+        INSERT INTO HER_PERFIL_PROFESIONAL
+        (INSTITUCION, COLEGAS, USUARIO_REGISTRO, USUARIO_MODIFICACION, FECHA_REGISTRO, FECHA_MODIFICACION, ESTADO) 
+        VALUES 
+        (#{institucion}, #{colegas}, #{usuarioRegistro}, #{usuarioModificacion}, sysdatetime(), sysdatetime(),1)
+    </insert>
+
+    <update id="actualizar" parameterType="com.cofar.hermes.kardex.models.PerfilProfesional">
+        UPDATE HER_PERFIL_PROFESIONAL SET 
+        institucion=#{institucion}, 
+        colegas=#{colegas}, 
+        usuario_modificacion=#{usuarioModificacion}, 
+        fecha_modificacion=sysdatetime()
+        WHERE id_perfil_profesional=#{idPerfilProfesional}
+
+    </update>
+
+    <delete id="eliminar" parameterType="java.lang.Integer">
+        UPDATE HER_PERFIL_PROFESIONAL SET estado=0 WHERE id_perfil_profesional=#{idPerfilProfesional}
+    </delete>
+</mapper>

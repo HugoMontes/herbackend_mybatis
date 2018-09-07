@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--*
+*
+*  @author Al?a?o Dur?n
+*
+*-->
+
+<mapper namespace="com.cofar.hermes.kardex.repository.ProductoRepository">
+    <resultMap id="ProductoMap" type="com.cofar.hermes.kardex.models.Producto">
+
+        <id column="id_producto" property="idProducto" />
+        <result column="id_linea" property="idLinea" />
+        <result column="descripcion" property="descripcion" />
+        <result column="cantidad" property="cantidad" />
+        <result column="usuario_registro" property="usuarioRegistro" />
+        <result column="usuario_modificacion" property="usuarioModificacion" />
+        <result column="fecha_registro" property="fechaRegistro" />
+        <result column="fecha_modificacion" property="fechaModificacion" />
+        <result column="estado" property="estado" />
+    </resultMap>
+
+    <select  id = "listarPorParametros" resultMap = "ProductoMap" parameterType="com.cofar.hermes.kardex.models.Producto">
+        SELECT * FROM HER_PRODUCTO WHERE 1=1
+        <if test="idLinea != null">
+            and id_linea =#{idLinea}
+        </if>
+        <if test="descripcion != null">
+            and descripcion =#{descripcion}
+        </if>
+        <if test="cantidad != null">
+            and cantidad =#{cantidad}
+        </if>
+        <if test="usuarioRegistro != null">
+            and usuario_registro =#{usuarioRegistro}
+        </if>
+        <if test="usuarioModificacion != null">
+            and usuario_modificacion =#{usuarioModificacion}
+        </if>
+        <if test="fechaRegistro != null">
+            and fecha_registro =#{fechaRegistro}
+        </if>
+        <if test="fechaModificacion != null">
+            and fecha_modificacion =#{fechaModificacion}
+        </if>
+        <if test="estado != null">
+            and estado =#{estado}
+        </if>
+
+    </select>
+
+    <select  id = "listar" resultMap = "ProductoMap" >
+        SELECT * FROM HER_PRODUCTO WHERE ESTADO=1 AND id_producto=#{0}
+    </select>
+    
+    <select  id = "obtener" resultMap = "ProductoMap" parameterType="java.lang.Integer">
+        SELECT * FROM HER_PRODUCTO WHERE ESTADO=1 AND id_producto=#{0}
+    </select>
+
+    <insert id="registrar" parameterType="com.cofar.hermes.kardex.models.Producto">
+        INSERT INTO HER_PRODUCTO
+        (ID_LINEA, DESCRIPCION, CANTIDAD, USUARIO_REGISTRO, USUARIO_MODIFICACION, FECHA_REGISTRO, FECHA_MODIFICACION, ESTADO) 
+        VALUES 
+        (#{idLinea}, #{descripcion}, #{cantidad}, #{usuarioRegistro}, #{usuarioModificacion}, sysdatetime(), sysdatetime(),1)
+    </insert>
+
+    <update id="actualizar" parameterType="com.cofar.hermes.kardex.models.Producto">
+        UPDATE HER_PRODUCTO SET 
+        id_linea=#{idLinea}, 
+        descripcion=#{descripcion}, 
+        cantidad=#{cantidad}, 
+        usuario_modificacion=#{usuarioModificacion}, 
+        fecha_modificacion=sysdatetime() 
+        WHERE id_producto=#{idProducto}
+
+    </update>
+
+    <delete id="eliminar" parameterType="java.lang.Integer">
+        UPDATE HER_PRODUCTO SET estado=0 WHERE id_producto=#{idProducto}
+    </delete>
+</mapper>

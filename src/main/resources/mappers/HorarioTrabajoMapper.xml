@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--*
+*
+*  @author Al?a?o Dur?n
+*
+*-->
+
+<mapper namespace="com.cofar.hermes.kardex.repository.HorarioTrabajoRepository">
+    <resultMap id="HorarioTrabajoMap" type="com.cofar.hermes.kardex.models.HorarioTrabajo">
+
+        <id column="id_horario_trabajo" property="idHorarioTrabajo" />
+        <result column="id_lugar_trabajo" property="idLugarTrabajo" />
+        <result column="id_turno" property="idTurno" />
+        <result column="lunes" property="lunes" />
+        <result column="martes" property="martes" />
+        <result column="miercoles" property="miercoles" />
+        <result column="jueves" property="jueves" />
+        <result column="viernes" property="viernes" />
+        <result column="tipo_horario" property="tipoHorario" />
+    </resultMap>
+
+    <select  id = "listarPorParametros" resultMap = "HorarioTrabajoMap" parameterType="com.cofar.hermes.kardex.models.HorarioTrabajo">
+        SELECT * FROM HER_HORARIO_TRABAJO WHERE 1=1
+        <if test="idLugarTrabajo != null">
+            and id_lugar_trabajo =#{idLugarTrabajo}
+        </if>
+        <if test="idTurno != null">
+            and id_turno =#{idTurno}
+        </if>
+        <if test="lunes != null">
+            and lunes =#{lunes}
+        </if>
+        <if test="martes != null">
+            and martes =#{martes}
+        </if>
+        <if test="miercoles != null">
+            and miercoles =#{miercoles}
+        </if>
+        <if test="jueves != null">
+            and jueves =#{jueves}
+        </if>
+        <if test="viernes != null">
+            and viernes =#{viernes}
+        </if>
+        <if test="tipoHorario != null">
+            and tipo_horario =#{tipoHorario}
+        </if>
+
+    </select>
+    <select  id = "listar" resultMap = "HorarioTrabajoMap">
+        SELECT * FROM HER_HORARIO_TRABAJO 
+      
+
+    </select>
+
+    <select  id = "obtener" resultMap = "HorarioTrabajoMap" parameterType="java.lang.Integer">
+        SELECT * FROM HER_HORARIO_TRABAJO WHERE id_horario_trabajo=#{idHorarioTrabajo}
+    </select>
+
+    <insert id="registrar" parameterType="com.cofar.hermes.kardex.models.HorarioTrabajo">
+        INSERT INTO HER_HORARIO_TRABAJO
+        ( ID_LUGAR_TRABAJO, ID_TURNO, LUNES, MARTES, MIERCOLES, JUEVES, VIERNES, TIPO_HORARIO) 
+        VALUES 
+        (#{idLugarTrabajo}, #{idTurno}, #{lunes}, #{martes}, #{miercoles}, #{jueves}, #{viernes}, #{tipoHorario})
+    </insert>
+
+    <update id="actualizar" parameterType="com.cofar.hermes.kardex.models.HorarioTrabajo">
+        UPDATE HER_HORARIO_TRABAJO SET 
+        id_lugar_trabajo=#{idLugarTrabajo}, 
+        id_turno=#{idTurno}, 
+        lunes=#{lunes}, 
+        martes=#{martes}, 
+        miercoles=#{miercoles}, 
+        jueves=#{jueves}, 
+        viernes=#{viernes}, 
+        tipo_horario=#{tipoHorario}
+        WHERE id_horario_trabajo=#{idHorarioTrabajo}
+
+    </update>
+
+    <update id="eliminar" parameterType="java.lang.Integer">
+        DELETE FROM HER_HORARIO_TRABAJO WHERE id_horario_trabajo=#{idHorarioTrabajo}
+    </update>
+</mapper>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--*
+*
+*  @author Al?a?o Dur?n
+*
+*-->
+
+<mapper namespace="com.cofar.hermes.kardex.repository.FarmaciaReferenciaRepository">
+    <resultMap id="FarmaciaReferenciaMap" type="com.cofar.hermes.kardex.models.FarmaciaReferencia">
+
+        <id column="id_farmacia_referencia" property="idFarmaciaReferencia" />
+        <result column="nombre_farmacia" property="nombreFarmacia" />
+        <result column="direccion_farmacia" property="direccionFarmacia" />
+        <result column="usuario_registro" property="usuarioRegistro" />
+        <result column="usuario_modificacion" property="usuarioModificacion" />
+        <result column="fecha_registro" property="fechaRegistro" />
+        <result column="fecha_modificacion" property="fechaModificacion" />
+        <result column="estado" property="estado" />
+    </resultMap>
+
+    <select  id = "listarPorParametros" resultMap = "FarmaciaReferenciaMap" parameterType="com.cofar.hermes.kardex.models.FarmaciaReferencia">
+        SELECT * FROM HER_FARMACIA_REFERENCIA WHERE 1=1
+        <if test="nombreFarmacia != null">
+            and nombre_farmacia =#{nombreFarmacia}
+        </if>
+        <if test="direccionFarmacia != null">
+            and direccion_farmacia =#{direccionFarmacia}
+        </if>
+        <if test="usuarioRegistro != null">
+            and usuario_registro =#{usuarioRegistro}
+        </if>
+        <if test="usuarioModificacion != null">
+            and usuario_modificacion =#{usuarioModificacion}
+        </if>
+        <if test="fechaRegistro != null">
+            and fecha_registro =#{fechaRegistro}
+        </if>
+        <if test="fechaModificacion != null">
+            and fecha_modificacion =#{fechaModificacion}
+        </if>
+        <if test="estado != null">
+            and estado =#{estado}
+        </if>
+
+    </select>
+    <select  id = "listar" resultMap = "FarmaciaReferenciaMap" parameterType="com.cofar.hermes.kardex.models.FarmaciaReferencia">
+        SELECT * FROM HER_FARMACIA_REFERENCIA 
+    </select>
+
+    <select  id = "obtener" resultMap = "FarmaciaReferenciaMap" parameterType="java.lang.Integer">
+        SELECT * FROM HER_FARMACIA_REFERENCIA WHERE ESTADO=1 AND id_farmacia_referencia=#{idFarmaciaReferencia}
+    </select>
+
+    <insert id="registrar" parameterType="com.cofar.hermes.kardex.models.FarmaciaReferencia">
+        INSERT INTO HER_FARMACIA_REFERENCIA
+        NOMBRE_FARMACIA, DIRECCION_FARMACIA, USUARIO_REGISTRO, USUARIO_MODIFICACION, FECHA_REGISTRO, FECHA_MODIFICACION, ESTADO) 
+        VALUES 
+        (#{nombreFarmacia}, #{direccionFarmacia}, #{usuarioRegistro}, #{usuarioModificacion}, sysdatetime(), sysdatetime(), 1)
+    </insert>
+
+    <update id="actualizar" parameterType="com.cofar.hermes.kardex.models.FarmaciaReferencia">
+        UPDATE HER_FARMACIA_REFERENCIA SET 
+        nombre_farmacia=#{nombreFarmacia}, 
+        direccion_farmacia=#{direccionFarmacia}, 
+        usuario_modificacion=#{usuarioModificacion}, 
+        fecha_modificacion=#{fechaModificacion} 
+        WHERE id_farmacia_referencia=#{idFarmaciaReferencia}
+
+    </update>
+
+    <update id="eliminar" parameterType="java.lang.Integer">
+        UPDATE HER_FARMACIA_REFERENCIA SET estado=0 WHERE id_farmacia_referencia=#{idFarmaciaReferencia}
+    </update>
+</mapper>

@@ -1,0 +1,98 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="com.cofar.hermes.kardex.repository.DireccionRepository">
+    <resultMap id="DireccionMap" type="com.cofar.hermes.kardex.models.Direccion">
+        <id column="id_direccion" property="idDireccion" />
+        <result column="direccion" property="direccion" />
+        <result column="nro_direccion" property="nroDireccion" />
+        <result column="telefono" property="telefono" />
+        <result column="email" property="email" />
+        <result column="avenida_calle" property="avenidaCalle" />
+        <result column="usuario_registro" property="usuarioRegistro" />
+        <result column="usuario_modificacion" property="usuarioModificacion" />
+        <result column="fecha_registro" property="fechaRegistro" />
+        <result column="fecha_modificacion" property="fechaModificacion" />
+        <result column="estado" property="estado" />
+    </resultMap>
+    
+    <resultMap id="DireccionMap02" type="com.cofar.hermes.kardex.models.Direccion">
+        <id column="id_direccion" property="idDireccion" />
+        <result column="direccion" property="direccion" />
+    </resultMap>
+    
+    <select id="listar" resultMap ="DireccionMap">
+        select * from HER_DIRECCION 
+    </select>
+    <select id="listarIdDescripcion" resultMap ="DireccionMap02">
+        select d.ID_DIRECCION,d.DIRECCION
+        from HER_DIRECCION d
+    </select>
+    <select id="obtener" parameterType="java.lang.Integer" resultMap = "DireccionMap">
+        SELECT * FROM HER_DIRECCION WHERE id_direccion=#{idDireccion}
+    </select>
+    
+    <select  id = "listarPorParametros" resultMap = "DireccionMap" parameterType="com.cofar.hermes.kardex.models.Direccion">
+        SELECT * FROM HER_DIRECCION WHERE 1=1
+        <if test="direccion != null">
+            and direccion =#{direccion}
+        </if>
+        <if test="nroDireccion != null">
+            and nro_direccion =#{nroDireccion}
+        </if>
+        <if test="telefono != null">
+            and telefono =#{telefono}
+        </if>
+        <if test="email != null">
+            and email =#{email}
+        </if>
+        <if test="avenidaCalle != null">
+            and avenida_calle =#{avenidaCalle}
+        </if>
+        <if test="usuarioRegistro != null">
+            and usuario_registro =#{usuarioRegistro}
+        </if>
+        <if test="usuarioModificacion != null">
+            and usuario_modificacion =#{usuarioModificacion}
+        </if>
+        <if test="fechaRegistro != null">
+            and fecha_registro =#{fechaRegistro}
+        </if>
+        <if test="fechaModificacion != null">
+            and fecha_modificacion =#{fechaModificacion}
+        </if>
+        <if test="estado != null">
+            and estado =#{estado}
+        </if>
+
+    </select>
+    
+    <insert id="registrar" parameterType="com.cofar.hermes.kardex.models.Direccion">
+        INSERT INTO HER_DIRECCION
+        (DIRECCION, NRO_DIRECCION, TELEFONO, EMAIL, AVENIDA_CALLE, USUARIO_REGISTRO, USUARIO_MODIFICACION, FECHA_REGISTRO, FECHA_MODIFICACION, ESTADO) 
+        VALUES 
+        (#{direccion}, #{nroDireccion}, #{telefono}, #{email}, #{avenidaCalle}, #{usuarioRegistro}, #{usuarioModificacion}, sysdatetime(), sysdatetime(), 1)
+    </insert>
+    
+    <update id="actualizar" parameterType="com.cofar.hermes.kardex.models.Direccion">
+        UPDATE HER_DIRECCION SET 
+        direccion=#{direccion}, 
+        nro_direccion=#{nroDireccion}, 
+        telefono=#{telefono}, 
+        email=#{email}, 
+        avenida_calle=#{avenidaCalle}, 
+        usuario_modificacion=#{usuarioModificacion}, 
+        fecha_modificacion=sysdatetime()
+        WHERE id_direccion=#{idDireccion}
+
+    </update>
+    <update id="eliminar" parameterType="java.lang.Integer">
+        UPDATE HER_DIRECCION SET 
+        ESTADO=0
+        WHERE id_direccion=#{idDireccion}
+
+    </update>
+    
+ 
+</mapper>

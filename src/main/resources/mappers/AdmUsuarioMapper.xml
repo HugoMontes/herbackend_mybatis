@@ -1,0 +1,34 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="com.cofar.hermes.core.repository.AdmUsuarioRepository">
+ 
+    <resultMap id="UserResultMap" type="com.cofar.hermes.core.models.AdmUsuarioModel">
+        <id column="ID_USUARIO" property="idUsuario" />
+        <result column="ID_PERSONA" property="idPersona" />
+        <result column="NOMBRE_USUARIO" property="nombreUsuario" />
+        <result column="CONTRASENIA" property="contrasenia" />
+        <result column="DIRECCION" property="direccion" />
+        <result column="CELULAR" property="celular" />
+        <result column="TELEFONO" property="telefono" />
+        <result column="GENERO" property="genero" />
+        <result column="CORREO_ELECTRONICO" property="correoElectronico" />
+        <result column="FECHA_NACIMIENTO" property="fechaNacimiento" />
+        <result column="FECHA_REGISTRO" property="fechaRegistro" />
+        <result column="FECHA_MODIFICACION" property="fechaModificacion" />
+        <result column="USUARIO_REGISTRO" property="usuarioRegistro" />
+        <result column="USUARIO_MODIFICACION" property="usuarioModificacion" />
+        <result column="ROL" property="rol" />
+    </resultMap>
+ 
+    <select id="listar"  resultMap="UserResultMap">
+        select  * from ADM_USUARIO
+    </select>
+    
+    <select id="findByNombreUsuario" parameterType="java.lang.String" resultMap="UserResultMap" >
+        select  * from ADM_USUARIO where NOMBRE_USUARIO =#{nombreUsuario}
+    </select>
+ 
+  
+</mapper>

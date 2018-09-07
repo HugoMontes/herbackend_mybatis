@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--*
+*
+*  @author Al?a?o Dur?n
+*
+*-->
+
+<mapper namespace="com.cofar.hermes.kardex.repository.MedicoRepository">
+    <resultMap id="MedicoMap" type="com.cofar.hermes.kardex.models.Medico">
+
+        <id column="id_medico" property="idMedico" />
+        <result column="id_perfil_profesional" property="idPerfilProfesional" />
+        <result column="id_perfil_psicografico" property="idPerfilPsicografico" />
+        <result column="id_perfil_personal" property="idPerfilPersonal" />
+        <result column="id_estado_civil" property="idEstadoCivil" />
+        <result column="id_regional" property="idRegional" />
+        <result column="ap_paterno" property="apPaterno" />
+        <result column="ap_materno" property="apMaterno" />
+        <result column="nombres" property="nombres" />
+        <result column="fecha_nacimiento" property="fechaNacimiento" />
+        <result column="telefono" property="telefono" />
+        <result column="celular" property="celular" />
+        <result column="correo_electronico" property="correoElectronico" />
+        <result column="genero" property="genero" />
+        <result column="nombre_hijos_edad" property="nombreHijosEdad" />
+        <result column="usuario_registro" property="usuarioRegistro" />
+        <result column="usuario_modificacion" property="usuarioModificacion" />
+        <result column="fecha_registro" property="fechaRegistro" />
+        <result column="fecha_modificacion" property="fechaModificacion" />
+        <result column="estado" property="estado" />
+   
+    </resultMap>
+    
+    <resultMap id="MedicoMap02" type="com.cofar.hermes.kardex.models.Medico" autoMapping="false">
+        <result column="id_medico" property="idMedico" />
+        <result column="ap_paterno" property="apPaterno" />
+        <result column="ap_materno" property="apMaterno" />
+        <result column="nombres" property="nombres" />
+        <result column="celular" property="celular" />
+        <collection property="lstEspecialidad" ofType="com.cofar.hermes.kardex.models.Especialidad" autoMapping="true">
+            <!--<id column="id_especialidad" property= "idEspecialidad"  javaType="Integer"/>-->
+            <id column="descripcion" property= "descripcion"  javaType="String"/>
+        </collection>
+        <collection property="lstLinea" ofType="com.cofar.hermes.kardex.models.Linea" autoMapping="true">
+            <!--<id column="id_especialidad" property= "idEspecialidad"  javaType="Integer"/>-->
+            <id column="descripcion" property= "descripcion"  javaType="String"/>
+        </collection>
+    </resultMap>
+
+    <select  id = "listarPorParametros" resultMap = "MedicoMap" parameterType="com.cofar.hermes.kardex.models.Medico">
+        SELECT * FROM HER_MEDICO WHERE 1=1
+        <if test="idPerfilProfesional != null">
+            and id_perfil_profesional =#{idPerfilProfesional}
+        </if>
+        <if test="idPerfilPsicografico != null">
+            and id_perfil_psicografico =#{idPerfilPsicografico}
+        </if>
+        <if test="idPerfilPersonal != null">
+            and id_perfil_personal =#{idPerfilPersonal}
+        </if>
+        <if test="idEstadoCivil != null">
+            and id_estado_civil =#{idEstadoCivil}
+        </if>
+        <if test="idRegional != null">
+            and id_regional =#{idRegional}
+        </if>
+        <if test="apPaterno != null">
+            and ap_paterno =#{apPaterno}
+        </if>
+        <if test="apMaterno != null">
+            and ap_materno =#{apMaterno}
+        </if>
+        <if test="nombres != null">
+            and nombres =#{nombres}
+        </if>
+        <if test="fechaNacimiento != null">
+            and fecha_nacimiento =#{fechaNacimiento}
+        </if>
+        <if test="telefono != null">
+            and telefono =#{telefono}
+        </if>
+        <if test="celular != null">
+            and celular =#{celular}
+        </if>
+        <if test="correoElectronico != null">
+            and correo_electronico =#{correoElectronico}
+        </if>
+        <if test="genero != null">
+            and genero =#{genero}
+        </if>
+        <if test="nombreHijosEdad != null">
+            and nombre_hijos_edad =#{nombreHijosEdad}
+        </if>
+        <if test="usuarioRegistro != null">
+            and usuario_registro =#{usuarioRegistro}
+        </if>
+        <if test="usuarioModificacion != null">
+            and usuario_modificacion =#{usuarioModificacion}
+        </if>
+        <if test="fechaRegistro != null">
+            and fecha_registro =#{fechaRegistro}
+        </if>
+        <if test="fechaModificacion != null">
+            and fecha_modificacion =#{fechaModificacion}
+        </if>
+        <if test="estado != null">
+            and estado =#{estado}
+        </if>
+
+    </select>
+
+    <select  id = "listar" resultMap = "MedicoMap">
+        SELECT * FROM HER_MEDICO
+    </select>
+    
+    <select  id = "listarEspLin" resultMap = "MedicoMap02">
+        select
+        me.ID_MEDICO,
+        me.AP_PATERNO,
+        me.AP_MATERNO,
+        me.NOMBRES,
+        me.CELULAR,
+        esp.ID_ESPECIALIDAD,
+        esp.DESCRIPCION
+        from HER_MEDICO me
+        left join HER_ESPECIALIDAD esp on me.ID_MEDICO = esp.ID_MEDICO
+        left JOIN HER_LINEA_ESPECIALIDAD E on esp.ID_ESPECIALIDAD = E.ID_ESPECIALIDAD
+        left JOIN HER_LINEA L on E.ID_LINEA = L.ID_LINEA
+        where me.ESTADO=1
+        order by me.AP_PATERNO,me.AP_MATERNO
+
+    </select>
+    
+    <select  id = "obtener" resultMap = "MedicoMap" parameterType="java.lang.Integer">
+        SELECT * FROM HER_MEDICO WHERE ESTADO=1 AND id_medico=#{0}
+    </select>
+
+    <insert id="registrar" parameterType="com.cofar.hermes.kardex.models.Medico">
+        INSERT INTO HER_MEDICO
+        (ID_PERFIL_PROFESIONAL, ID_PERFIL_PSICOGRAFICO, ID_PERFIL_PERSONAL, ID_ESTADO_CIVIL, ID_REGIONAL, AP_PATERNO, AP_MATERNO, NOMBRES, FECHA_NACIMIENTO, TELEFONO, CELULAR, CORREO_ELECTRONICO, GENERO, NOMBRE_HIJOS_EDAD, USUARIO_REGISTRO, USUARIO_MODIFICACION, FECHA_REGISTRO, FECHA_MODIFICACION, ESTADO) 
+        VALUES 
+        (#{idPerfilProfesional}, #{idPerfilPsicografico}, #{idPerfilPersonal}, #{idEstadoCivil}, #{idRegional}, #{apPaterno}, #{apMaterno}, #{nombres}, #{fechaNacimiento}, #{telefono}, #{celular}, #{correoElectronico}, #{genero}, #{nombreHijosEdad}, #{usuarioRegistro}, #{usuarioModificacion}, sysdatetime(),sysdatetime(), 1)
+    </insert>
+
+    <update id="actualizar" parameterType="com.cofar.hermes.kardex.models.Medico">
+        UPDATE HER_MEDICO SET 
+        id_perfil_profesional=#{idPerfilProfesional}, 
+        id_perfil_psicografico=#{idPerfilPsicografico}, 
+        id_perfil_personal=#{idPerfilPersonal}, 
+        id_estado_civil=#{idEstadoCivil}, 
+        id_regional=#{idRegional}, 
+        ap_paterno=#{apPaterno}, 
+        ap_materno=#{apMaterno}, 
+        nombres=#{nombres}, 
+        fecha_nacimiento=#{fechaNacimiento}, 
+        telefono=#{telefono}, 
+        celular=#{celular}, 
+        correo_electronico=#{correoElectronico}, 
+        genero=#{genero}, 
+        nombre_hijos_edad=#{nombreHijosEdad}, 
+        usuario_modificacion=#{usuarioModificacion}, 
+        fecha_modificacion=sysdatetime() 
+        WHERE id_medico=#{idMedico}
+
+    </update>
+
+    <delete id="eliminar" parameterType="java.lang.Integer">
+        UPDATE  HER_MEDICO SET ESTADO=0 where ID_MEDICO=#{idMedico}
+    </delete>
+</mapper>

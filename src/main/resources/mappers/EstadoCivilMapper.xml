@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--*
+*
+*  @author Al?a?o Dur?n
+*
+*-->
+
+<mapper namespace="com.cofar.hermes.kardex.repository.EstadoCivilRepository">
+    <resultMap id="EstadoCivilMap" type="com.cofar.hermes.kardex.models.EstadoCivil">
+
+        <id column="id_estado_civil" property="idEstadoCivil" />
+        <result column="descripcion" property="descripcion" />
+        <result column="abreviacion" property="abreviacion" />
+        <result column="usuario_registro" property="usuarioRegistro" />
+        <result column="usuario_modificacion" property="usuarioModificacion" />
+        <result column="fecha_registro" property="fechaRegistro" />
+        <result column="fecha_modificacion" property="fechaModificacion" />
+        <result column="estado" property="estado" />
+    </resultMap>
+    <resultMap id="EstadoCivilMap02" type="com.cofar.hermes.kardex.models.EstadoCivil">
+        <result column="id_estado_civil" property="idEstadoCivil" />
+        <result column="descripcion" property="descripcion" />
+<!--        <result column="usuario_registro" property="usuarioRegistro" />
+        <result column="usuario_modificacion" property="usuarioModificacion" />-->
+    </resultMap>
+
+    <select  id = "listarPorParametros" resultMap = "EstadoCivilMap" parameterType="com.cofar.hermes.kardex.models.EstadoCivil">
+        SELECT * FROM HER_ESTADO_CIVIL WHERE 1=1
+        <if test="descripcion != null">
+            and descripcion =#{descripcion}
+        </if>
+        <if test="abreviacion != null">
+            and abreviacion =#{abreviacion}
+        </if>
+        <if test="usuarioRegistro != null">
+            and usuario_registro =#{usuarioRegistro}
+        </if>
+        <if test="usuarioModificacion != null">
+            and usuario_modificacion =#{usuarioModificacion}
+        </if>
+        <if test="fechaRegistro != null">
+            and fecha_registro =#{fechaRegistro}
+        </if>
+        <if test="fechaModificacion != null">
+            and fecha_modificacion =#{fechaModificacion}
+        </if>
+        <if test="estado != null">
+            and estado =#{estado}
+        </if>
+
+    </select>
+    <select  id = "listar" resultMap = "EstadoCivilMap" parameterType="com.cofar.hermes.kardex.models.EstadoCivil">
+        SELECT * FROM HER_ESTADO_CIVIL 
+    </select>
+    <select  id = "listarIdDescripcion" resultMap = "EstadoCivilMap02">
+        SELECT id_estado_civil , descripcion FROM HER_ESTADO_CIVIL WHERE  ESTADO=1 
+    </select>
+
+    <select  id = "obtener" resultMap = "EstadoCivilMap" parameterType="java.lang.Integer">
+        SELECT * FROM HER_ESTADO_CIVIL WHERE ESTADO=1 AND id_estado_civil=#{idEstadoCivil}
+    </select>
+
+    <insert id="registrar" parameterType="com.cofar.hermes.kardex.models.EstadoCivil">
+        INSERT INTO HER_ESTADO_CIVIL
+        (DESCRIPCION, ABREVIACION, USUARIO_REGISTRO, USUARIO_MODIFICACION, FECHA_REGISTRO, FECHA_MODIFICACION, ESTADO) 
+        VALUES 
+        ( #{descripcion}, #{abreviacion}, #{usuarioRegistro}, #{usuarioModificacion},sysdatetime(), sysdatetime(), 1)
+    </insert>
+
+    <update id="actualizar" parameterType="com.cofar.hermes.kardex.models.EstadoCivil">
+        UPDATE HER_ESTADO_CIVIL SET 
+        descripcion=#{descripcion}, 
+        abreviacion=#{abreviacion}, 
+        usuario_modificacion=#{usuarioModificacion}, 
+        fecha_modificacion=sysdatetime() 
+        WHERE id_estado_civil=#{idEstadoCivil}
+    </update>
+
+    <update id="eliminar" parameterType="java.lang.Integer">
+        UPDATE HER_ESTADO_CIVIL SET estado=0 WHERE id_estado_civil=#{idEstadoCivil}
+    </update>
+</mapper>

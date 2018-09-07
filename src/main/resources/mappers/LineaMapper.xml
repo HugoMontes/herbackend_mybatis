@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--*
+*
+*  @author Al?a?o Dur?n
+*
+*-->
+
+<mapper namespace="com.cofar.hermes.kardex.repository.LineaRepository">
+    <resultMap id="LineaMap" type="com.cofar.hermes.kardex.models.Linea">
+
+        <id column="id_linea" property="idLinea" />
+        <result column="descripcion" property="descripcion" />
+        <result column="usuario_registro" property="usuarioRegistro" />
+        <result column="usuario_modificacion" property="usuarioModificacion" />
+        <result column="fecha_registro" property="fechaRegistro" />
+        <result column="fecha_modificacion" property="fechaModificacion" />
+        <result column="estado" property="estado" />
+    </resultMap>
+
+ 
+    <select  id = "listar" resultMap = "LineaMap" parameterType="com.cofar.hermes.kardex.models.Linea">
+        SELECT * FROM HER_LINEA 
+    </select>
+    
+    <select  id = "listarPorParametros" resultMap = "LineaMap" parameterType="com.cofar.hermes.kardex.models.Linea">
+        SELECT * FROM HER_LINEA WHERE 1=1
+        <if test="descripcion != null">
+            and descripcion =#{descripcion}
+        </if>
+        <if test="usuarioRegistro != null">
+            and usuario_registro =#{usuarioRegistro}
+        </if>
+        <if test="usuarioModificacion != null">
+            and usuario_modificacion =#{usuarioModificacion}
+        </if>
+        <if test="fechaRegistro != null">
+            and fecha_registro =#{fechaRegistro}
+        </if>
+        <if test="fechaModificacion != null">
+            and fecha_modificacion =#{fechaModificacion}
+        </if>
+        <if test="estado != null">
+            and estado =#{estado}
+        </if>
+
+    </select>
+
+    <select  id = "obtener" resultMap = "LineaMap" parameterType="java.lang.Integer">
+        SELECT * FROM HER_LINEA WHERE ESTADO=1 AND id_linea=#{idLinea}
+    </select>
+
+    <insert id="registrar" parameterType="com.cofar.hermes.kardex.models.Linea">
+        INSERT INTO HER_LINEA
+        (DESCRIPCION, USUARIO_REGISTRO, USUARIO_MODIFICACION, FECHA_REGISTRO, FECHA_MODIFICACION, ESTADO) 
+        VALUES 
+        (#{descripcion}, #{usuarioRegistro}, #{usuarioModificacion}, sysdatetime(),sysdatetime(), 1)
+    </insert>
+
+    <update id="actualizar" parameterType="com.cofar.hermes.kardex.models.Linea">
+        UPDATE HER_LINEA SET 
+        descripcion=#{descripcion}, 
+        usuario_modificacion=#{usuarioModificacion}, 
+        fecha_modificacion=sysdatetime()
+        WHERE id_linea=#{idLinea}
+
+    </update>
+
+    <update id="eliminar" parameterType="java.lang.Integer">
+        UPDATE HER_LINEA SET estado=0 WHERE id_linea=#{idLinea}
+    </update>
+</mapper>

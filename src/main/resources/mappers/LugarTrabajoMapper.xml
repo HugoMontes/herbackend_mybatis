@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--*
+*
+*  @author Al?a?o Dur?n
+*
+*-->
+
+<mapper namespace="com.cofar.hermes.kardex.repository.LugarTrabajoRepository">
+    <resultMap id="LugarTrabajoMap" type="com.cofar.hermes.kardex.models.LugarTrabajo">
+
+        <id column="id_lugar_trabajo" property="idLugarTrabajo" />
+        <result column="id_secretaria" property="idSecretaria" />
+        <result column="id_direccion" property="idDireccion" />
+        <result column="id_medico" property="idMedico" />
+        <result column="descripcion" property="descripcion" />
+        <result column="nro_pacientes" property="nroPacientes" />
+        <result column="costo_consulta" property="costoConsulta" />
+        <result column="longitud" property="longitud" />
+        <result column="latitud" property="latitud" />
+        <result column="cargo" property="cargo" />
+        <result column="usuario_registro" property="usuarioRegistro" />
+        <result column="usuario_modificacion" property="usuarioModificacion" />
+        <result column="fecha_registro" property="fechaRegistro" />
+        <result column="fecha_modificacion" property="fechaModificacion" />
+        <result column="estado" property="estado" />
+    </resultMap>
+
+    <select  id = "listarPorParametros" resultMap = "LugarTrabajoMap" parameterType="com.cofar.hermes.kardex.models.LugarTrabajo">
+        SELECT * FROM HER_LUGAR_TRABAJO WHERE 1=1
+        <if test="idSecretaria != null">
+            and id_secretaria =#{idSecretaria}
+        </if>
+        <if test="idDireccion != null">
+            and id_direccion =#{idDireccion}
+        </if>
+        <if test="idMedico != null">
+            and id_medico =#{idMedico}
+        </if>
+        <if test="descripcion != null">
+            and descripcion =#{descripcion}
+        </if>
+        <if test="nroPacientes != null">
+            and nro_pacientes =#{nroPacientes}
+        </if>
+        <if test="costoConsulta != null">
+            and costo_consulta =#{costoConsulta}
+        </if>
+        <if test="longitud != null">
+            and longitud =#{longitud}
+        </if>
+        <if test="latitud != null">
+            and latitud =#{latitud}
+        </if>
+        <if test="cargo != null">
+            and cargo =#{cargo}
+        </if>
+        <if test="usuarioRegistro != null">
+            and usuario_registro =#{usuarioRegistro}
+        </if>
+        <if test="usuarioModificacion != null">
+            and usuario_modificacion =#{usuarioModificacion}
+        </if>
+        <if test="fechaRegistro != null">
+            and fecha_registro =#{fechaRegistro}
+        </if>
+        <if test="fechaModificacion != null">
+            and fecha_modificacion =#{fechaModificacion}
+        </if>
+        <if test="estado != null">
+            and estado =#{estado}
+        </if>
+
+    </select>
+
+    <select  id = "listar" resultMap = "LugarTrabajoMap">
+        SELECT * FROM HER_LUGAR_TRABAJO 
+    </select>
+    
+    <select  id = "obtener" resultMap = "LugarTrabajoMap" parameterType="java.lang.Integer">
+        SELECT * FROM HER_LUGAR_TRABAJO WHERE ESTADO=1 AND id_lugar_trabajo=#{idLugarTrabajo}
+    </select>
+
+    <insert id="registrar" parameterType="com.cofar.hermes.kardex.models.LugarTrabajo">
+        INSERT INTO HER_LUGAR_TRABAJO
+        (ID_SECRETARIA, ID_DIRECCION, ID_MEDICO, DESCRIPCION, NRO_PACIENTES, COSTO_CONSULTA, LONGITUD, LATITUD, CARGO, USUARIO_REGISTRO, USUARIO_MODIFICACION, FECHA_REGISTRO, FECHA_MODIFICACION, ESTADO) 
+        VALUES 
+        (#{idSecretaria}, #{idDireccion}, #{idMedico}, #{descripcion}, #{nroPacientes}, #{costoConsulta}, #{longitud}, #{latitud}, #{cargo}, #{usuarioRegistro}, #{usuarioModificacion}, sysdatetime(),sysdatetime(),1)
+    </insert>
+
+    <update id="actualizar" parameterType="com.cofar.hermes.kardex.models.LugarTrabajo">
+        UPDATE HER_LUGAR_TRABAJO SET 
+        id_secretaria=#{idSecretaria}, 
+        id_direccion=#{idDireccion}, 
+        id_medico=#{idMedico}, 
+        descripcion=#{descripcion}, 
+        nro_pacientes=#{nroPacientes}, 
+        costo_consulta=#{costoConsulta}, 
+        longitud=#{longitud}, 
+        latitud=#{latitud}, 
+        cargo=#{cargo}, 
+        usuario_modificacion=#{usuarioModificacion}, 
+        fecha_modificacion=sysdatetime()
+        WHERE id_lugar_trabajo=#{idLugarTrabajo}
+
+    </update>
+
+    <delete id="eliminar" parameterType="java.lang.Integer">
+        UPDATE HER_LUGAR_TRABAJO SET estado=0 WHERE id_lugar_trabajo=#{idLugarTrabajo}
+    </delete>
+</mapper>
