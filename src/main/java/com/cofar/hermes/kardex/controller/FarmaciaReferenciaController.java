@@ -25,7 +25,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author aduran
  */
 @RestController
-@RequestMapping("farmacia")
+@RequestMapping("/kardex/farmacia")
 public class FarmaciaReferenciaController {
 
     private static final Log LOGGER = LogFactory.getLog(FarmaciaReferenciaController.class);

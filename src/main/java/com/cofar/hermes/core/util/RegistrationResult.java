@@ -5,14 +5,26 @@
  */
 package com.cofar.hermes.core.util;
 
+import java.util.HashMap;
+
 /**
- *
  * @author aduran
  */
 public class RegistrationResult {
 
     private Integer code;
     private String message;
+
+    public HashMap getParams() {
+        return params;
+    }
+
+    public void setParams(HashMap params) {
+        this.params = params;
+    }
+
+    private HashMap params;
+
 
     public Integer getCode() {
         return code;

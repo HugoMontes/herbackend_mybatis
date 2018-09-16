@@ -5,6 +5,7 @@
  */
 package com.cofar.hermes.kardex.serviceImpl;
 
+import com.cofar.hermes.core.service.AdmUsuarioServiceLoguin;
 import com.cofar.hermes.core.util.RegistrationResult;
 import com.cofar.hermes.kardex.models.FarmaciaReferencia;
 import com.cofar.hermes.kardex.repository.FarmaciaReferenciaRepository;
@@ -24,7 +25,8 @@ public class FarmaciaReferenciaServiceImpl implements FarmaciaReferenciaService 
 
     @Autowired
     private FarmaciaReferenciaRepository farmaciaReferenciaRepository;
-
+    @Autowired
+    private AdmUsuarioServiceLoguin loginService;
     @Override
     public RegistrationResult registrar(FarmaciaReferencia farmacia) {
         RegistrationResult res = new RegistrationResult();

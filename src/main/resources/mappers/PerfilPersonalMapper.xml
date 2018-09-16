@@ -87,7 +87,7 @@
     </select>
 
     <select  id = "listar" resultMap = "PerfilPersonalMap" >
-        SELECT * FROM HER_PERFIL_PERSONAL WHERE ESTADO=1 AND id_perfil_personal=#{0}
+        SELECT * FROM HER_PERFIL_PERSONAL WHERE ESTADO=1
     </select>
     <select  id = "obtener" resultMap = "PerfilPersonalMap" parameterType="java.lang.Integer">
         SELECT * FROM HER_PERFIL_PERSONAL WHERE ESTADO=1 AND id_perfil_personal=#{0}

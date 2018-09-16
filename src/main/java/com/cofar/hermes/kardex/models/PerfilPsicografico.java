@@ -5,12 +5,15 @@
  */
 package com.cofar.hermes.kardex.models;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 import java.util.Date;
 
 /**
  *
  * @author aduran
  */
+@JsonInclude(JsonInclude.Include.NON_DEFAULT)
 public class PerfilPsicografico {
 
     private Integer idPerfilPsicografico;

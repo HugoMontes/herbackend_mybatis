@@ -25,7 +25,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author aduran
  */
 @RestController
-@RequestMapping("lugarTrabajo")
+@RequestMapping("/kardex/lugarTrabajo")
 public class LugarTrabajoController {
 
     private static final Log LOGGER = LogFactory.getLog(LugarTrabajoController.class);

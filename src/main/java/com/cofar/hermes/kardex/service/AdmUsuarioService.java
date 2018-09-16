@@ -18,6 +18,6 @@ public interface AdmUsuarioService {
 
     public AdmUsuarioModel findByNombreUsuario(String nombreUsuario);
 
-    public AdmUsuarioModel obtenerUsuarioLogueado();
+//    public AdmUsuarioModel obtenerUsuarioLogueado();
 
 }

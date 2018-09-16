@@ -8,16 +8,18 @@ package com.cofar.hermes.kardex.repository;
 import com.cofar.hermes.kardex.models.Especialidad;
 
 import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 
 /**
- *
  * @author aduran
  */
 @Mapper
 public interface EspecialidadRepository {
 
     public List<Especialidad> listar();
+
+    public List<Especialidad> listarDescripcion();
 
     public List<Especialidad> listarPorParametros(Especialidad especialidad);
 

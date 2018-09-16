@@ -5,19 +5,24 @@
  */
 package com.cofar.hermes.kardex.serviceImpl;
 
+import com.cofar.hermes.core.service.AdmUsuarioServiceLoguin;
 import com.cofar.hermes.core.util.RegistrationResult;
 import com.cofar.hermes.kardex.models.Medico;
 import com.cofar.hermes.kardex.repository.MedicoRepository;
 import com.cofar.hermes.kardex.service.MedicoService;
+import lombok.Builder;
+import org.springframework.beans.factory.ObjectFactory;
 import org.springframework.data.domain.Pageable;
+
+import java.util.HashMap;
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
- *
  * @author aduran
  */
 @Service
@@ -26,11 +31,16 @@ public class MedicoServiceImpl implements MedicoService {
 
     @Autowired
     private MedicoRepository medicoRepository;
+    @Autowired
+    private AdmUsuarioServiceLoguin loginService;
 
     @Override
     public RegistrationResult registrar(Medico medico) {
         RegistrationResult res = new RegistrationResult();
         res.setCode(medicoRepository.registrar(medico));
+        HashMap params = new HashMap();
+        params.put("idMedico", medico.getIdMedico());
+        res.setParams(params);
         res.setMessage("Se ha Registrado Medico Correctamente ");
         return res;
     }

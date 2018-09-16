@@ -5,6 +5,7 @@
  */
 package com.cofar.hermes.kardex.serviceImpl;
 
+import com.cofar.hermes.core.service.AdmUsuarioServiceLoguin;
 import com.cofar.hermes.core.util.RegistrationResult;
 import com.cofar.hermes.kardex.models.PerfilPersonal;
 import com.cofar.hermes.kardex.repository.PerfilPersonalRepository;
@@ -24,7 +25,8 @@ public class PerfilPersonalServiceImpl implements PerfilPersonalService {
 
     @Autowired
     private PerfilPersonalRepository perfilPersonalRepository;
-
+    @Autowired
+    private AdmUsuarioServiceLoguin loginService;
     @Override
     public RegistrationResult registrar(PerfilPersonal perfil) {
         RegistrationResult res = new RegistrationResult();

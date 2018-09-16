@@ -5,6 +5,7 @@
  */
 package com.cofar.hermes.kardex.serviceImpl;
 
+import com.cofar.hermes.core.service.AdmUsuarioServiceLoguin;
 import com.cofar.hermes.core.util.RegistrationResult;
 import com.cofar.hermes.kardex.models.LugarTrabajo;
 import com.cofar.hermes.kardex.repository.LugarTrabajoRpository;
@@ -24,7 +25,8 @@ public class LugarTrabajoServiceImpl implements LugarTrabajoService {
     
     @Autowired
     private LugarTrabajoRpository ltr;
-    
+    @Autowired
+    private AdmUsuarioServiceLoguin loginService;
     @Override
     public RegistrationResult registrar(LugarTrabajo lugar) {
         RegistrationResult res = new RegistrationResult();

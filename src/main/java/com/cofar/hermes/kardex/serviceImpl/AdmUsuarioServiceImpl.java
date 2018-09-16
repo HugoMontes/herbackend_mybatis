@@ -32,29 +32,4 @@ public class AdmUsuarioServiceImpl implements AdmUsuarioService {
     public AdmUsuarioModel findByNombreUsuario(String nombreUsuario) {
         return admUsuarioRepository.findByNombreUsuario(nombreUsuario);
     }
-    
-    @Override
-    public AdmUsuarioModel obtenerUsuarioLogueado() {
-
-        String userName = getUserLoguedSpring();
-        
-        System.out.println("===================> IMPLE ADMUSUARIO");
-        System.out.println(" N: "+userName);
-        
-        AdmUsuarioModel user = findByNombreUsuario(userName);
-        
-        return user;
-    }
-    
-    private String getUserLoguedSpring() {
-        String userName = null;
-        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        if (principal instanceof UserDetails) {
-            userName = ((UserDetails) principal).getUsername();
-        } else {
-            userName = principal.toString();
-        }
-        return userName;
-    }
-    
 }

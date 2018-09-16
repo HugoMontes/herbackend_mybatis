@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 @RestController
-@RequestMapping("/direccion")
+@RequestMapping("/kardex/direccion")
 public class DireccionController {
 
     private static final Log LOGGER = LogFactory.getLog(DireccionController.class);
@@ -42,7 +42,7 @@ public class DireccionController {
 //        LOGGER.info("METHOD: listarNotas()");
 //        return direccionService.listar();
 //    }
-    @PostMapping("/registrar")
+    @PostMapping("/adicionar")
     public RegistrationResult registrarDireccion(@RequestBody @Valid Direccion direccion) {
         LOGGER.info("METHOD: agregarLinea() | PARAMS: " + direccion);
 

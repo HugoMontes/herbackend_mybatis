@@ -5,17 +5,19 @@
  */
 package com.cofar.hermes.kardex.serviceImpl;
 
+import com.cofar.hermes.core.service.AdmUsuarioServiceLoguin;
 import com.cofar.hermes.core.util.RegistrationResult;
 import com.cofar.hermes.kardex.models.Turno;
 import com.cofar.hermes.kardex.repository.TurnoRepository;
 import com.cofar.hermes.kardex.service.TurnoService;
+
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
- *
  * @author aduran
  */
 @Service
@@ -24,6 +26,8 @@ public class TurnoServiceImpl implements TurnoService {
 
     @Autowired
     private TurnoRepository tr;
+    @Autowired
+    private AdmUsuarioServiceLoguin loginService;
 
     @Override
     public RegistrationResult registrar(Turno turno) {

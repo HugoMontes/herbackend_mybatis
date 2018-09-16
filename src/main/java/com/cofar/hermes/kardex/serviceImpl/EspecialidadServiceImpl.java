@@ -5,17 +5,19 @@
  */
 package com.cofar.hermes.kardex.serviceImpl;
 
+import com.cofar.hermes.core.service.AdmUsuarioServiceLoguin;
 import com.cofar.hermes.core.util.RegistrationResult;
 import com.cofar.hermes.kardex.models.Especialidad;
 import com.cofar.hermes.kardex.repository.EspecialidadRepository;
 import com.cofar.hermes.kardex.service.EspecialidadService;
+
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
- *
  * @author aduran
  */
 @Service
@@ -24,6 +26,9 @@ public class EspecialidadServiceImpl implements EspecialidadService {
 
     @Autowired
     private EspecialidadRepository especialidadRepository;
+
+    @Autowired
+    private AdmUsuarioServiceLoguin loginService;
 
     @Override
     public List<Especialidad> listar() {
@@ -65,6 +70,11 @@ public class EspecialidadServiceImpl implements EspecialidadService {
     @Override
     public Especialidad obtener(Integer idEspecialidad) {
         return especialidadRepository.obtener(idEspecialidad);
+    }
+
+    @Override
+    public List<Especialidad> listarDescripcion() {
+        return especialidadRepository.listarDescripcion();
     }
 
 }

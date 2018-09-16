@@ -5,10 +5,13 @@
  */
 package com.cofar.hermes.kardex.models;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 /**
  *
  * @author aduran
  */
+@JsonInclude(JsonInclude.Include.NON_DEFAULT)
 public class LineaEspecialidad {
 
     private Integer idLineaEspecialidad;

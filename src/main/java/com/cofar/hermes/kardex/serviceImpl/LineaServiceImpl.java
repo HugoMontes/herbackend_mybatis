@@ -5,6 +5,7 @@
  */
 package com.cofar.hermes.kardex.serviceImpl;
 
+import com.cofar.hermes.core.service.AdmUsuarioServiceLoguin;
 import com.cofar.hermes.core.util.RegistrationResult;
 import com.cofar.hermes.kardex.models.Linea;
 import com.cofar.hermes.kardex.repository.LineaRepository;
@@ -24,7 +25,8 @@ public class LineaServiceImpl implements LineaService {
 
     @Autowired
     private LineaRepository lineaRepository;
-
+    @Autowired
+    private AdmUsuarioServiceLoguin loginService;
     @Override
     public RegistrationResult registrar(Linea linea) {
         RegistrationResult res = new RegistrationResult();

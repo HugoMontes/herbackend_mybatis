@@ -4,7 +4,9 @@ import java.util.List;
 
 import com.cofar.hermes.core.models.AdmUsuarioModel;
 import com.cofar.hermes.core.repository.AdmUsuarioRepository;
+
 import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.core.GrantedAuthority;
@@ -26,12 +28,12 @@ public class AdmUsuarioServiceLoguin implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         AdmUsuarioModel user = repository.findByNombreUsuario(username);
-        
+
         System.out.println("====> AUTH=================");
-        System.out.println("1: "+user.getNombreUsuario());
-        System.out.println("2: "+user.getContrasenia());
-        System.out.println("3: "+user.getEstado());
-        
+        System.out.println("1: " + user.getNombreUsuario());
+        System.out.println("2: " + user.getContrasenia());
+        System.out.println("3: " + user.getEstado());
+
         if (user != null) {
             return new User(user.getNombreUsuario(), user.getContrasenia(), user.getActivo(), user.getActivo(), user.getActivo(),
                     user.getActivo(), buildGranted(user.getRol()));
@@ -48,9 +50,21 @@ public class AdmUsuarioServiceLoguin implements UserDetailsService {
         return auths;
     }
 
-    
-    
-    public String getUserLoguedSpring() {
+
+    public AdmUsuarioModel obtenerUsuarioLogueado() {
+        AdmUsuarioModel adm = repository.findByNombreUsuario(getUserLogged());
+        return adm;
+
+    }
+
+    public Integer obtenerIdUsuarioLogueado() {
+        AdmUsuarioModel adm = repository.findByNombreUsuario(getUserLogged());
+        return adm.getIdUsuario();
+
+    }
+
+
+    public String getUserLogged() {
         String userName = null;
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         if (principal instanceof UserDetails) {

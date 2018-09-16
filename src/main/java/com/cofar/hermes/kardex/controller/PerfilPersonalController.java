@@ -25,7 +25,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author aduran
  */
 @RestController
-@RequestMapping("perfilPersonal")
+@RequestMapping("/kardex/perfilpersonal")
 public class PerfilPersonalController {
 
     private static final Log LOGGER = LogFactory.getLog(PerfilPersonalController.class);

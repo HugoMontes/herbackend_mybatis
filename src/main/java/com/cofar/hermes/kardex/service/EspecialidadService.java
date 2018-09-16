@@ -11,7 +11,6 @@ import com.cofar.hermes.kardex.models.Especialidad;
 import java.util.List;
 
 /**
- *
  * @author aduran
  */
 public interface EspecialidadService {
@@ -27,5 +26,7 @@ public interface EspecialidadService {
     public RegistrationResult eliminar(Integer idEspecialidad);
 
     public Especialidad obtener(Integer idEspecialidad);
+
+    public List<Especialidad> listarDescripcion();
 
 }

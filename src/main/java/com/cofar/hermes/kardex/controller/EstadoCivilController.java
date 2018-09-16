@@ -25,7 +25,7 @@ import org.springframework.web.bind.annotation.RequestBody;
  * @author aduran
  */
 @RestController
-@RequestMapping("/estadoCivil")
+@RequestMapping("/kardex/estadoCivil")
 public class EstadoCivilController {
 
     private static final Log LOGGER = LogFactory.getLog(EstadoCivilController.class);

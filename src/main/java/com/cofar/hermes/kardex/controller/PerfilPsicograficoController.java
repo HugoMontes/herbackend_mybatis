@@ -25,7 +25,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author aduran
  */
 @RestController
-@RequestMapping("perfil/psicografico")
+@RequestMapping("/kardex/perfilpsicografico")
 public class PerfilPsicograficoController {
 
     private static final Log LOGGER = LogFactory.getLog(PerfilPsicograficoController.class);

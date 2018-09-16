@@ -5,6 +5,7 @@
  */
 package com.cofar.hermes.kardex.serviceImpl;
 
+import com.cofar.hermes.core.service.AdmUsuarioServiceLoguin;
 import com.cofar.hermes.core.util.RegistrationResult;
 import com.cofar.hermes.kardex.models.HorarioTrabajo;
 import com.cofar.hermes.kardex.repository.HorarioTrabajoRepository;
@@ -24,7 +25,8 @@ public class HorarioTrabajoServiceImpl implements HorarioTrabajoService {
 
     @Autowired
     private HorarioTrabajoRepository horarioTrabajoRepository;
-
+    @Autowired
+    private AdmUsuarioServiceLoguin loginService;
     @Override
     public RegistrationResult actualizar(HorarioTrabajo horario) {
         RegistrationResult res = new RegistrationResult();

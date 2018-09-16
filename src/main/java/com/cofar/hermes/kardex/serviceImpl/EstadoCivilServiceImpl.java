@@ -5,6 +5,7 @@
  */
 package com.cofar.hermes.kardex.serviceImpl;
 
+import com.cofar.hermes.core.service.AdmUsuarioServiceLoguin;
 import com.cofar.hermes.core.util.RegistrationResult;
 import com.cofar.hermes.kardex.models.EstadoCivil;
 import com.cofar.hermes.kardex.repository.EstadoCivilRepository;
@@ -24,7 +25,8 @@ public class EstadoCivilServiceImpl implements EstadoCivilService {
 
     @Autowired
     private EstadoCivilRepository estadoCivilRepository;
-
+    @Autowired
+    private AdmUsuarioServiceLoguin loginService;
     @Override
     public RegistrationResult registrar(EstadoCivil estadoCivil) {
         RegistrationResult res = new RegistrationResult();

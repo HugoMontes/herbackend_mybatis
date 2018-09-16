@@ -2,7 +2,9 @@ package com.cofar.hermes.kardex.serviceImpl;
 
 import com.cofar.hermes.core.models.AdmUsuarioModel;
 import com.cofar.hermes.core.repository.AdmUsuarioRepository;
+import com.cofar.hermes.core.service.AdmUsuarioServiceLoguin;
 import com.cofar.hermes.core.util.RegistrationResult;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,8 +25,7 @@ public class DireccionServiceImpl implements DireccionService {
     private DireccionRepository direccionRepository;
 
     @Autowired
-//    @Qualifier("admUsuarioRepository")
-    private AdmUsuarioRepository admUsuarioRepository;
+    private AdmUsuarioServiceLoguin loginService;
 
     @Override
     public List<Direccion> listar() {
@@ -40,20 +41,12 @@ public class DireccionServiceImpl implements DireccionService {
     @Override
     public RegistrationResult registrar(Direccion direccion) {
         RegistrationResult res = new RegistrationResult();
+//      res.setCode(direccionRepository.registrar(direccion));
+//      res.setMessage("La Direccion ha sido Registrada correctamente");
 
-        AdmUsuarioModel usuario = new AdmUsuarioModel();
-        usuario = admUsuarioRepository.findByNombreUsuario(getUserLoguedSpring());
-
-        System.out.println("=================>");
-        System.out.println("1: " + usuario.getNombreUsuario());
-        System.out.println("2: " + usuario.getIdUsuario());
-
-//        res.setCode(direccionRepository.registrar(direccion));
-        System.out.println("====> DIRECION IMPLE ");
-        System.out.println("User : " + getUserLoguedSpring());
+        System.out.println("User : " + loginService.obtenerIdUsuarioLogueado());
 
         res.setCode(1);
-        res.setMessage("La Direccion ha sido Registrada correctamente");
         return res;
     }
 

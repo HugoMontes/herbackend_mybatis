@@ -19,7 +19,7 @@ import org.springframework.data.domain.Pageable;
 @Mapper
 public interface MedicoRepository {
 
-    public abstract Integer registrar(Medico medico);
+    public  Integer registrar(Medico medico);
 
     public abstract Integer actualizar(Medico medico);
 

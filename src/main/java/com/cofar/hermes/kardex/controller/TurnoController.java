@@ -26,7 +26,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author aduran
  */
 @RestController
-@RequestMapping("turno")
+@RequestMapping("/kardex/turno")
 public class TurnoController {
 
     private static final Log LOGGER = LogFactory.getLog(TurnoController.class);

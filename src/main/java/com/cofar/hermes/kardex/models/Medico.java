@@ -5,37 +5,42 @@
  */
 package com.cofar.hermes.kardex.models;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
+
+
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
 /**
- *
  * @author aduran
  */
 //@JsonInclude(Include.NON_NULL)
 @JsonInclude(Include.NON_DEFAULT)
-public class Medico {
+public class Medico implements Serializable {
 
     private Integer idMedico;
-    private Integer idPerfilProfesional;
-    private Integer idPerfilPsicografico;
-    private Integer idPerfilPersonal;
+//    private Integer idPerfilProfesional;
+//    private Integer idPerfilPsicografico;
+//    private Integer idPerfilPersonal;
     private Integer idEstadoCivil;
     private Integer idRegional;
     private String apPaterno;
     private String apMaterno;
     private String nombres;
+//  <  @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy", locale = "##default")
     private Date fechaNacimiento;
     private String telefono;
     private String celular;
     private String correoElectronico;
     private int genero;
-    private String nombreHijosEdad;
     private Integer usuarioRegistro;
     private Integer usuarioModificacion;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy@HH:mm:ss", locale = "##default")
     private Date fechaRegistro;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy@HH:mm:ss", locale = "##default")
     private Date fechaModificacion;
     private int estado;
 
@@ -64,30 +69,6 @@ public class Medico {
 
     public void setIdMedico(Integer idMedico) {
         this.idMedico = idMedico;
-    }
-
-    public Integer getIdPerfilProfesional() {
-        return idPerfilProfesional;
-    }
-
-    public void setIdPerfilProfesional(Integer idPerfilProfesional) {
-        this.idPerfilProfesional = idPerfilProfesional;
-    }
-
-    public Integer getIdPerfilPsicografico() {
-        return idPerfilPsicografico;
-    }
-
-    public void setIdPerfilPsicografico(Integer idPerfilPsicografico) {
-        this.idPerfilPsicografico = idPerfilPsicografico;
-    }
-
-    public Integer getIdPerfilPersonal() {
-        return idPerfilPersonal;
-    }
-
-    public void setIdPerfilPersonal(Integer idPerfilPersonal) {
-        this.idPerfilPersonal = idPerfilPersonal;
     }
 
     public Integer getIdEstadoCivil() {
@@ -129,7 +110,7 @@ public class Medico {
     public void setNombres(String nombres) {
         this.nombres = nombres;
     }
-
+//      @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy", locale = "##default")
     public Date getFechaNacimiento() {
         return fechaNacimiento;
     }
@@ -170,13 +151,7 @@ public class Medico {
         this.genero = genero;
     }
 
-    public String getNombreHijosEdad() {
-        return nombreHijosEdad;
-    }
-
-    public void setNombreHijosEdad(String nombreHijosEdad) {
-        this.nombreHijosEdad = nombreHijosEdad;
-    }
+ 
 
     public Integer getUsuarioRegistro() {
         return usuarioRegistro;

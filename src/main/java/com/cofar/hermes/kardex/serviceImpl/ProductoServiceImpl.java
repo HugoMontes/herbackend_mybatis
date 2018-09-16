@@ -5,6 +5,7 @@
  */
 package com.cofar.hermes.kardex.serviceImpl;
 
+import com.cofar.hermes.core.service.AdmUsuarioServiceLoguin;
 import com.cofar.hermes.core.util.RegistrationResult;
 import com.cofar.hermes.kardex.models.Producto;
 import com.cofar.hermes.kardex.repository.ProductoRepository;
@@ -24,7 +25,8 @@ public class ProductoServiceImpl implements ProductoService {
 
     @Autowired
     private ProductoRepository pr;
-
+    @Autowired
+    private AdmUsuarioServiceLoguin loginService;
     @Override
     public RegistrationResult registrar(Producto producto) {
         RegistrationResult res = new RegistrationResult();
