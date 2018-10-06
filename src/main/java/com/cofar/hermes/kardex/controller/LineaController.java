@@ -35,10 +35,10 @@ public class LineaController {
 //    @Qualifier("lineaService")
     private LineaService lineaService;
 
-    @GetMapping("/listar/todo")
-    public List<Linea> listarTodoLinea() {
+    @PostMapping("/listar")
+    public List<Linea> listarTodoLinea(@RequestBody @Valid Linea linea) {
         LOGGER.info("METHOD: listarNotas()");
-        return lineaService.listar();
+        return lineaService.listarPorParametros(linea);
     }
 
     @GetMapping("/listar")

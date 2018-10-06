@@ -11,6 +11,7 @@ import com.cofar.hermes.kardex.service.TurnoService;
 
 import java.util.List;
 import javax.validation.Valid;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +23,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- *
  * @author aduran
  */
 @RestController
@@ -35,10 +35,10 @@ public class TurnoController {
 //    @Qualifier("turnoService")
     private TurnoService turnoService;
 
-    @GetMapping("/listar/todo")
-    public List<Turno> listarTodo() {
+    @PostMapping("/listar")
+    public List<Turno> listarTodo(@RequestBody @Valid Turno turno) {
         LOGGER.info(" METHOD listar Todo Turnos");
-        return turnoService.listar();
+        return turnoService.listarPorParametros(turno);
     }
 
     @GetMapping("/listar")
@@ -58,7 +58,7 @@ public class TurnoController {
         System.out.println("====> CONTROLL");
         System.out.println("1 : " + turno.getIdTurno());
         System.out.println("2 : " + turno.getDescripcion());
-        System.out.println("3 : " + turno.getHora());
+        System.out.println("3 : " + turno.getHoraAtencionInicio());
         System.out.println("4 : " + turno.getEstado());
         LOGGER.info(" METHOD adicionarTurno");
         return turnoService.registrar(turno);

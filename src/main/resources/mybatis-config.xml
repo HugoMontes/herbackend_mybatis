@@ -8,7 +8,6 @@
 		<setting name="jdbcTypeForNull" value="NULL" />
 		<setting name="logImpl" value="LOG4J" />
 	</settings>
-
 <!--   <mappers> -->
 <!--         <package name="com.cofar.hermes.core.repository"/> -->
 <!--         <package name="com.cofar.hermes.kardex.repository"/> -->
@@ -19,4 +18,5 @@
 <!--     </typeAliases> -->
 </configuration>
 
+	<!--<Logger name="com.cofar.hermes.kardex.repository" level="DEBUG"/>-->
 

@@ -51,7 +51,7 @@
     </select>
 
     <select  id = "listar" resultMap = "ProductoMap" >
-        SELECT * FROM HER_PRODUCTO WHERE ESTADO=1 AND id_producto=#{0}
+        SELECT * FROM HER_PRODUCTO WHERE ESTADO=1
     </select>
     
     <select  id = "obtener" resultMap = "ProductoMap" parameterType="java.lang.Integer">

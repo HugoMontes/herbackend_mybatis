@@ -7,11 +7,15 @@ package com.cofar.hermes.kardex.controller;
 
 import com.cofar.hermes.core.util.RegistrationResult;
 import com.cofar.hermes.kardex.models.LugarTrabajo;
+import com.cofar.hermes.kardex.models.Medico;
 import com.cofar.hermes.kardex.service.LugarTrabajoService;
+
 import java.util.List;
 import javax.validation.Valid;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,28 +25,32 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- *
  * @author aduran
  */
 @RestController
-@RequestMapping("/kardex/lugarTrabajo")
+@RequestMapping("/kardex/lugartrabajo")
 public class LugarTrabajoController {
 
     private static final Log LOGGER = LogFactory.getLog(LugarTrabajoController.class);
     @Autowired
-//    @Qualifier("lugarTrabajoService")
     private LugarTrabajoService lugarTrabajoService;
 
-    @GetMapping("/listar/todo")
-    public List<LugarTrabajo> listarTodo() {
+    @PostMapping("/listar")
+    public List<LugarTrabajo> listarTodo(@RequestBody @Valid LugarTrabajo lugar) {
         LOGGER.info("METHOD: listarLugarTrabajoeTodo()");
-        return lugarTrabajoService.listar();
+        return lugarTrabajoService.listarPorParametros(lugar);
     }
 
     @GetMapping("/listar")
     public List<LugarTrabajo> listarLugarTrabajo() {
         LOGGER.info("METHOD: listarLugarTrabajo()");
         return lugarTrabajoService.listar();
+    }
+
+    @PostMapping("/listarpormedico")
+    public List<LugarTrabajo> listarPorMedico(@RequestBody @Valid Medico medico) {
+        LOGGER.info("METHOD: lugar Trabajo por medico");
+        return lugarTrabajoService.listarPorMedico(medico);
     }
 
     @PostMapping("/obtener")

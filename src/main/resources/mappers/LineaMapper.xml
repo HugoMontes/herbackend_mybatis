@@ -12,6 +12,7 @@
 
         <id column="id_linea" property="idLinea" />
         <result column="descripcion" property="descripcion" />
+        <result column="abreviacion" property="abreviacion" />
         <result column="usuario_registro" property="usuarioRegistro" />
         <result column="usuario_modificacion" property="usuarioModificacion" />
         <result column="fecha_registro" property="fechaRegistro" />
@@ -21,7 +22,7 @@
 
  
     <select  id = "listar" resultMap = "LineaMap" parameterType="com.cofar.hermes.kardex.models.Linea">
-        SELECT * FROM HER_LINEA 
+        SELECT * FROM HER_LINEA where ESTADO=1
     </select>
     
     <select  id = "listarPorParametros" resultMap = "LineaMap" parameterType="com.cofar.hermes.kardex.models.Linea">

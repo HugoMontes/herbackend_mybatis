@@ -8,18 +8,19 @@ package com.cofar.hermes.kardex.repository;
 import com.cofar.hermes.kardex.models.Medico;
 
 import org.springframework.data.domain.Page;
+
 import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.data.domain.Pageable;
 
 /**
- *
  * @author aduran
  */
 @Mapper
 public interface MedicoRepository {
 
-    public  Integer registrar(Medico medico);
+    public Integer registrar(Medico medico);
 
     public abstract Integer actualizar(Medico medico);
 
@@ -28,6 +29,8 @@ public interface MedicoRepository {
     public abstract Medico obtener(Integer IdMedico);
 
     public abstract List<Medico> listar();
+
+    public abstract List<Medico> listarlugarHorarioTrabajo();
 
     public abstract List<Medico> listarEspLin();
 

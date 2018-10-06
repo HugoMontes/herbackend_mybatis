@@ -10,18 +10,32 @@
 <mapper namespace="com.cofar.hermes.kardex.repository.HorarioTrabajoRepository">
     <resultMap id="HorarioTrabajoMap" type="com.cofar.hermes.kardex.models.HorarioTrabajo">
 
-        <id column="id_horario_trabajo" property="idHorarioTrabajo" />
-        <result column="id_lugar_trabajo" property="idLugarTrabajo" />
-        <result column="id_turno" property="idTurno" />
-        <result column="lunes" property="lunes" />
-        <result column="martes" property="martes" />
-        <result column="miercoles" property="miercoles" />
-        <result column="jueves" property="jueves" />
-        <result column="viernes" property="viernes" />
-        <result column="tipo_horario" property="tipoHorario" />
+        <id column="id_horario_trabajo" property="idHorarioTrabajo"/>
+        <result column="id_lugar_trabajo" property="idLugarTrabajo"/>
+        <result column="id_turno" property="idTurno"/>
+        <result column="lunes" property="lunes"/>
+        <result column="martes" property="martes"/>
+        <result column="miercoles" property="miercoles"/>
+        <result column="jueves" property="jueves"/>
+        <result column="viernes" property="viernes"/>
+        <result column="tipo_horario" property="tipoHorario"/>
     </resultMap>
 
-    <select  id = "listarPorParametros" resultMap = "HorarioTrabajoMap" parameterType="com.cofar.hermes.kardex.models.HorarioTrabajo">
+    <resultMap id="HorarioTrabajoMap02" type="com.cofar.hermes.kardex.models.HorarioTrabajo">
+        <id column="id_horario_trabajo" property="idHorarioTrabajo"/>
+        <result column="lunes" property="lunes"/>
+        <result column="martes" property="martes"/>
+        <result column="miercoles" property="miercoles"/>
+        <result column="jueves" property="jueves"/>
+        <result column="viernes" property="viernes"/>
+        <collection property="turno" ofType="com.cofar.hermes.kardex.models.Turno" autoMapping="true">
+            <result column="hora_atencion_inicio" property="horaAtencionInicio" javaType="java.util.Date"/>
+            <result column="hora_atencion_fin" property="horaAtencionFin" javaType="java.util.Date"/>
+        </collection>
+    </resultMap>
+
+    <select id="listarPorParametros" resultMap="HorarioTrabajoMap"
+            parameterType="com.cofar.hermes.kardex.models.HorarioTrabajo">
         SELECT * FROM HER_HORARIO_TRABAJO WHERE 1=1
         <if test="idLugarTrabajo != null">
             and id_lugar_trabajo =#{idLugarTrabajo}
@@ -49,14 +63,19 @@
         </if>
 
     </select>
-    <select  id = "listar" resultMap = "HorarioTrabajoMap">
-        SELECT * FROM HER_HORARIO_TRABAJO 
-      
-
+    <select id="listar" resultMap="HorarioTrabajoMap">
+        SELECT * FROM HER_HORARIO_TRABAJO where ESTADO=1
     </select>
 
-    <select  id = "obtener" resultMap = "HorarioTrabajoMap" parameterType="java.lang.Integer">
+
+    <select id="obtener" resultMap="HorarioTrabajoMap" parameterType="java.lang.Integer">
         SELECT * FROM HER_HORARIO_TRABAJO WHERE id_horario_trabajo=#{idHorarioTrabajo}
+    </select>
+    <select id="listarPorLugarTrabajo"  resultMap="HorarioTrabajoMap02" resultType="com.cofar.hermes.kardex.models.HorarioTrabajo" parameterType="integer">
+        select htr.ID_HORARIO_TRABAJO,htr.LUNES,htr.MARTES,htr.MIERCOLES,htr.JUEVES,htr.VIERNES,ht.HORA_ATENCION_INICIO,ht.HORA_ATENCION_FIN
+        from HER_HORARIO_TRABAJO htr
+        left join HER_TURNO ht on htr.ID_TURNO = ht.ID_TURNO
+        where htr.ESTADO = 1 and htr.ID_LUGAR_TRABAJO =#{idLugarTrabajo}
     </select>
 
     <insert id="registrar" parameterType="com.cofar.hermes.kardex.models.HorarioTrabajo">

@@ -30,19 +30,18 @@ public class PerfilProfesionalController {
     private static final Log LOGGER = LogFactory.getLog(PerfilPersonalController.class);
 
     @Autowired
-//    @Qualifier("perfilProfesionalService")
     private PerfilProfesionalService perfilProfesionalService;
 
-    @GetMapping("/listar/todo")
+    @GetMapping("/listar")
     public List<PerfilProfesional> listarTodo() {
         LOGGER.info(" METHOD listarTodo perfilPersonal");
         return perfilProfesionalService.listar();
     }
 
-    @GetMapping("/listar")
-    public List<PerfilProfesional> listarPerfilPersonal() {
+    @PostMapping("/listar")
+    public List<PerfilProfesional> listarPerfilPersonal(@RequestBody @Valid PerfilProfesional perfil) {
         LOGGER.info(" METHOD listarPerfilPersonal");
-        return perfilProfesionalService.listar();
+        return perfilProfesionalService.listarPorParametros(perfil);
     }
 
     @PostMapping("/obtener")

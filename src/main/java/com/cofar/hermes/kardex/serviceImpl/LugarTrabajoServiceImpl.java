@@ -7,26 +7,34 @@ package com.cofar.hermes.kardex.serviceImpl;
 
 import com.cofar.hermes.core.service.AdmUsuarioServiceLoguin;
 import com.cofar.hermes.core.util.RegistrationResult;
+import com.cofar.hermes.kardex.models.HorarioTrabajo;
 import com.cofar.hermes.kardex.models.LugarTrabajo;
+import com.cofar.hermes.kardex.models.Medico;
+import com.cofar.hermes.kardex.repository.HorarioTrabajoRepository;
 import com.cofar.hermes.kardex.repository.LugarTrabajoRpository;
 import com.cofar.hermes.kardex.service.LugarTrabajoService;
+
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
- *
  * @author aduran
  */
 @Service
 @Transactional
 public class LugarTrabajoServiceImpl implements LugarTrabajoService {
-    
+
     @Autowired
     private LugarTrabajoRpository ltr;
     @Autowired
+    private HorarioTrabajoRepository htr;
+
+    @Autowired
     private AdmUsuarioServiceLoguin loginService;
+
     @Override
     public RegistrationResult registrar(LugarTrabajo lugar) {
         RegistrationResult res = new RegistrationResult();
@@ -34,7 +42,7 @@ public class LugarTrabajoServiceImpl implements LugarTrabajoService {
         res.setMessage("Se ha Registrado Lugar de Trabajo Correctamente ");
         return res;
     }
-    
+
     @Override
     public RegistrationResult actualizar(LugarTrabajo lugar) {
         RegistrationResult res = new RegistrationResult();
@@ -42,7 +50,7 @@ public class LugarTrabajoServiceImpl implements LugarTrabajoService {
         res.setMessage("Se ha Actualizado Lugar de Trabajo Correctamente ");
         return res;
     }
-    
+
     @Override
     public RegistrationResult eliminar(Integer idLugarTrabajo) {
         RegistrationResult res = new RegistrationResult();
@@ -50,20 +58,35 @@ public class LugarTrabajoServiceImpl implements LugarTrabajoService {
         res.setMessage("Se ha Eliminado Lugar de Trabajo Correctamente ");
         return res;
     }
-    
+
     @Override
     public List<LugarTrabajo> listar() {
         return ltr.listar();
     }
-    
+
     @Override
     public List<LugarTrabajo> listarPorParametros(LugarTrabajo lugar) {
         return ltr.listarPorParametros(lugar);
     }
-    
+
     @Override
     public LugarTrabajo obtener(Integer idLugarTrabajo) {
         return ltr.obtener(idLugarTrabajo);
     }
-    
+
+    @Override
+    public List<LugarTrabajo> listarPorMedico(Medico medico) {
+        List<LugarTrabajo> lista = ltr.listarPorMedico(medico.getIdMedico());
+        System.out.println("idMedico : " + medico.getIdMedico());
+
+        for (LugarTrabajo trabajo : lista) {
+            System.out.println("lugar Trabajo "+trabajo.getIdLugarTrabajo());
+
+            List<HorarioTrabajo> lsthorario = htr.listarPorLugarTrabajo(trabajo.getIdLugarTrabajo());
+            System.out.println("lista Horarios size "+lsthorario.size());
+            trabajo.setLsthorarioTrabajo(lsthorario);
+        }
+
+        return ltr.listarPorMedico(medico.getIdMedico());
+    }
 }

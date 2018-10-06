@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--*
+    *
+    *  @author Al?a?o Dur?n
+    *
+    *-->
+
+<mapper namespace="com.cofar.hermes.rutero.repository.RuteroTipoRepository">
+    <resultMap id="RuteroTipoMap" type="com.cofar.hermes.rutero.models.RuteroTipo">
+
+        <id column="id_rutero_tipo" property="idRuteroTipo"/>
+        <result column="descripcion" property="descripcion"/>
+        <result column="estado" property="estado"/>
+    </resultMap>
+
+    <select id="listarPorParametros" resultMap="RuteroTipoMap"
+            parameterType="com.cofar.hermes.rutero.models.RuteroTipo">
+        SELECT * FROM HER_RUT_RUTERO_TIPO WHERE 1=1
+        <if test="descripcion != null">
+            and descripcion like #{descripcion}
+        </if>
+        <if test="estado != null">
+            and estado =#{estado}
+        </if>
+
+    </select>
+
+    <select id="obtener" resultMap="RuteroTipoMap" parameterType="java.lang.Integer">
+    SELECT * FROM HER_RUT_RUTERO_TIPO WHERE ESTADO=1 AND id_rutero_tipo=#{0}
+</select>
+
+    <insert id="registrar" parameterType="com.cofar.hermes.rutero.models.RuteroTipo">
+ INSERT INTO HER_RUT_RUTERO_TIPO
+(DESCRIPCION, ESTADO)
+VALUES 
+(#{descripcion},1)
+</insert>
+
+    <update id="actualizar" parameterType="com.cofar.hermes.rutero.models.RuteroTipo">
+   UPDATE HER_RUT_RUTERO_TIPO SET 
+descripcion=#{descripcion}
+WHERE id_rutero_tipo=#{idRuteroTipo}
+
+</update>
+
+    <update id="eliminar" parameterType="java.lang.Integer">
+   UPDATE HER_RUT_RUTERO_TIPO SET estado=0 WHERE id_rutero_tipo=#{0}
+</update>
+</mapper>

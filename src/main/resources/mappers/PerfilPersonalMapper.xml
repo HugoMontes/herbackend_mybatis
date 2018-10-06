@@ -9,117 +9,131 @@
 
 <mapper namespace="com.cofar.hermes.kardex.repository.PerfilPersonalRepository">
     <resultMap id="PerfilPersonalMap" type="com.cofar.hermes.kardex.models.PerfilPersonal">
-
-        <id column="id_perfil_personal" property="idPerfilPersonal" />
-        <result column="nombre_conyugue" property="nombreConyugue" />
-        <result column="nombre_hijos_edad" property="nombreHijosEdad" />
-        <result column="origen_familia" property="origenFamilia" />
-        <result column="grupos_sociales" property="gruposSociales" />
-        <result column="amigos" property="amigos" />
-        <result column="comida_preferida" property="comidaPreferida" />
-        <result column="bebida_preferida" property="bebidaPreferida" />
-        <result column="mascota" property="mascota" />
-        <result column="tipo_musica_preferida" property="tipoMusicaPreferida" />
-        <result column="instrumento_preferido" property="instrumentoPreferido" />
-        <result column="gustos_generales" property="gustosGenerales" />
-        <result column="hobbies" property="hobbies" />
-        <result column="usuario_registro" property="usuarioRegistro" />
-        <result column="usuario_modificacion" property="usuarioModificacion" />
-        <result column="fecha_registro" property="fechaRegistro" />
-        <result column="fecha_modificacion" property="fechaModificacion" />
-        <result column="estado" property="estado" />
+        <id column="id_perfil_personal" property="idPerfilPersonal"/>
+        <result column="id_medico" property="idMedico"/>
+        <result column="nombre_conyugue" property="nombreConyugue"/>
+        <result column="nombre_hijos_edad" property="nombreHijosEdad"/>
+        <result column="origen_familia" property="origenFamilia"/>
+        <result column="grupos_sociales" property="gruposSociales"/>
+        <result column="amigos" property="amigos"/>
+        <result column="comida_preferida" property="comidaPreferida"/>
+        <result column="bebida_preferida" property="bebidaPreferida"/>
+        <result column="mascota" property="mascota"/>
+        <result column="tipo_musica_preferida" property="tipoMusicaPreferida"/>
+        <result column="instrumento_preferido" property="instrumentoPreferido"/>
+        <result column="gustos_generales" property="gustosGenerales"/>
+        <result column="hobbies" property="hobbies"/>
+        <result column="usuario_registro" property="usuarioRegistro"/>
+        <result column="usuario_modificacion" property="usuarioModificacion"/>
+        <result column="fecha_registro" property="fechaRegistro"/>
+        <result column="fecha_modificacion" property="fechaModificacion"/>
+        <result column="estado" property="estado"/>
     </resultMap>
 
-    <select  id = "listarPorParametros" resultMap = "PerfilPersonalMap" parameterType="com.cofar.hermes.kardex.models.PerfilPersonal">
+    <select id="listarPorParametros" resultMap="PerfilPersonalMap" parameterType="com.cofar.hermes.kardex.models.PerfilPersonal">
         SELECT * FROM HER_PERFIL_PERSONAL WHERE 1=1
         <if test="nombreConyugue != null">
             and nombre_conyugue =#{nombreConyugue}
         </if>
-        <if test="nombreHijosEdad != null">
-            and nombre_hijos_edad =#{nombreHijosEdad}
+        <if test="idMedico != null">
+            and id_medico =#{idMedico}
         </if>
-        <if test="origenFamilia != null">
-            and origen_familia =#{origenFamilia}
-        </if>
-        <if test="gruposSociales != null">
-            and grupos_sociales =#{gruposSociales}
-        </if>
-        <if test="amigos != null">
-            and amigos =#{amigos}
-        </if>
-        <if test="comidaPreferida != null">
-            and comida_preferida =#{comidaPreferida}
-        </if>
-        <if test="bebidaPreferida != null">
-            and bebida_preferida =#{bebidaPreferida}
-        </if>
-        <if test="mascota != null">
-            and mascota =#{mascota}
-        </if>
-        <if test="tipoMusicaPreferida != null">
-            and tipo_musica_preferida =#{tipoMusicaPreferida}
-        </if>
-        <if test="instrumentoPreferido != null">
-            and instrumento_preferido =#{instrumentoPreferido}
-        </if>
-        <if test="gustosGenerales != null">
-            and gustos_generales =#{gustosGenerales}
-        </if>
-        <if test="hobbies != null">
-            and hobbies =#{hobbies}
-        </if>
-        <if test="usuarioRegistro != null">
-            and usuario_registro =#{usuarioRegistro}
-        </if>
-        <if test="usuarioModificacion != null">
-            and usuario_modificacion =#{usuarioModificacion}
-        </if>
-        <if test="fechaRegistro != null">
-            and fecha_registro =#{fechaRegistro}
-        </if>
-        <if test="fechaModificacion != null">
-            and fecha_modificacion =#{fechaModificacion}
-        </if>
-        <if test="estado != null">
-            and estado =#{estado}
-        </if>
+
+        <!--<if test="nombreHijosEdad != null">-->
+            <!--and nombre_hijos_edad =#{nombreHijosEdad}-->
+        <!--</if>-->
+        <!--<if test="origenFamilia != null">-->
+            <!--and origen_familia =#{origenFamilia}-->
+        <!--</if>-->
+        <!--<if test="gruposSociales != null">-->
+            <!--and grupos_sociales =#{gruposSociales}-->
+        <!--</if>-->
+        <!--<if test="amigos != null">-->
+            <!--and amigos =#{amigos}-->
+        <!--</if>-->
+        <!--<if test="comidaPreferida != null">-->
+            <!--and comida_preferida =#{comidaPreferida}-->
+        <!--</if>-->
+        <!--<if test="bebidaPreferida != null">-->
+            <!--and bebida_preferida =#{bebidaPreferida}-->
+        <!--</if>-->
+        <!--<if test="mascota != null">-->
+            <!--and mascota =#{mascota}-->
+        <!--</if>-->
+        <!--<if test="tipoMusicaPreferida != null">-->
+            <!--and tipo_musica_preferida =#{tipoMusicaPreferida}-->
+        <!--</if>-->
+        <!--<if test="instrumentoPreferido != null">-->
+            <!--and instrumento_preferido =#{instrumentoPreferido}-->
+        <!--</if>-->
+        <!--<if test="gustosGenerales != null">-->
+            <!--and gustos_generales =#{gustosGenerales}-->
+        <!--</if>-->
+        <!--<if test="hobbies != null">-->
+            <!--and hobbies =#{hobbies}-->
+        <!--</if>-->
+        <!--<if test="usuarioRegistro != null">-->
+            <!--and usuario_registro =#{usuarioRegistro}-->
+        <!--</if>-->
+        <!--<if test="usuarioModificacion != null">-->
+            <!--and usuario_modificacion =#{usuarioModificacion}-->
+        <!--</if>-->
+        <!--<if test="fechaRegistro != null">-->
+            <!--and fecha_registro =#{fechaRegistro}-->
+        <!--</if>-->
+        <!--<if test="fechaModificacion != null">-->
+            <!--and fecha_modificacion =#{fechaModificacion}-->
+        <!--</if>-->
+        <!--<if test="estado != null">-->
+            <!--and estado =#{estado}-->
+        <!--</if>-->
 
     </select>
 
-    <select  id = "listar" resultMap = "PerfilPersonalMap" >
-        SELECT * FROM HER_PERFIL_PERSONAL WHERE ESTADO=1
+    <select id="listar" resultMap="PerfilPersonalMap">
+        SELECT *
+        FROM HER_PERFIL_PERSONAL
+        WHERE ESTADO = 1
     </select>
-    <select  id = "obtener" resultMap = "PerfilPersonalMap" parameterType="java.lang.Integer">
-        SELECT * FROM HER_PERFIL_PERSONAL WHERE ESTADO=1 AND id_perfil_personal=#{0}
+    <select id="obtener" resultMap="PerfilPersonalMap" parameterType="java.lang.Integer">
+        SELECT *
+        FROM HER_PERFIL_PERSONAL
+        WHERE ESTADO = 1 AND id_perfil_personal = #{0}
     </select>
 
     <insert id="registrar" parameterType="com.cofar.hermes.kardex.models.PerfilPersonal">
         INSERT INTO HER_PERFIL_PERSONAL
-        (NOMBRE_CONYUGUE, NOMBRE_HIJOS_EDAD, ORIGEN_FAMILIA, GRUPOS_SOCIALES, AMIGOS, COMIDA_PREFERIDA, BEBIDA_PREFERIDA, MASCOTA, TIPO_MUSICA_PREFERIDA, INSTRUMENTO_PREFERIDO, GUSTOS_GENERALES, HOBBIES, USUARIO_REGISTRO, USUARIO_MODIFICACION, FECHA_REGISTRO, FECHA_MODIFICACION, ESTADO) 
-        VALUES 
-        (#{nombreConyugue}, #{nombreHijosEdad}, #{origenFamilia}, #{gruposSociales}, #{amigos}, #{comidaPreferida}, #{bebidaPreferida}, #{mascota}, #{tipoMusicaPreferida}, #{instrumentoPreferido}, #{gustosGenerales}, #{hobbies}, #{usuarioRegistro}, #{usuarioModificacion}, sysdatetime(), sysdatetime(), 1)
+        (NOMBRE_CONYUGUE, NOMBRE_HIJOS_EDAD, ORIGEN_FAMILIA, GRUPOS_SOCIALES, AMIGOS, COMIDA_PREFERIDA, BEBIDA_PREFERIDA, MASCOTA, TIPO_MUSICA_PREFERIDA, INSTRUMENTO_PREFERIDO, GUSTOS_GENERALES, HOBBIES, USUARIO_REGISTRO, USUARIO_MODIFICACION, FECHA_REGISTRO, FECHA_MODIFICACION, ESTADO)
+        VALUES
+            (#{nombreConyugue}, #{nombreHijosEdad}, #{origenFamilia}, #{gruposSociales}, #{amigos}, #{comidaPreferida},
+                                #{bebidaPreferida}, #{mascota}, #{tipoMusicaPreferida}, #{instrumentoPreferido},
+                                #{gustosGenerales}, #{hobbies}, #{usuarioRegistro}, #{usuarioModificacion},
+             sysdatetime(), sysdatetime(), 1)
     </insert>
 
     <update id="actualizar" parameterType="com.cofar.hermes.kardex.models.PerfilPersonal">
-        UPDATE HER_PERFIL_PERSONAL SET 
-        nombre_conyugue=#{nombreConyugue}, 
-        nombre_hijos_edad=#{nombreHijosEdad}, 
-        origen_familia=#{origenFamilia}, 
-        grupos_sociales=#{gruposSociales}, 
-        amigos=#{amigos}, 
-        comida_preferida=#{comidaPreferida}, 
-        bebida_preferida=#{bebidaPreferida}, 
-        mascota=#{mascota}, 
-        tipo_musica_preferida=#{tipoMusicaPreferida}, 
-        instrumento_preferido=#{instrumentoPreferido}, 
-        gustos_generales=#{gustosGenerales}, 
-        hobbies=#{hobbies}, 
-        usuario_modificacion=#{usuarioModificacion}, 
-        fecha_modificacion=sysdatetime() 
-        WHERE id_perfil_personal=#{idPerfilPersonal}
+        UPDATE HER_PERFIL_PERSONAL
+        SET
+            nombre_conyugue       = #{nombreConyugue},
+            nombre_hijos_edad     = #{nombreHijosEdad},
+            origen_familia        = #{origenFamilia},
+            grupos_sociales       = #{gruposSociales},
+            amigos                = #{amigos},
+            comida_preferida      = #{comidaPreferida},
+            bebida_preferida      = #{bebidaPreferida},
+            mascota               = #{mascota},
+            tipo_musica_preferida = #{tipoMusicaPreferida},
+            instrumento_preferido = #{instrumentoPreferido},
+            gustos_generales      = #{gustosGenerales},
+            hobbies               = #{hobbies},
+            usuario_modificacion  = #{usuarioModificacion},
+            fecha_modificacion    = sysdatetime()
+        WHERE id_perfil_personal = #{idPerfilPersonal}
     </update>
 
     <delete id="eliminar" parameterType="java.lang.Integer">
-        UPDATE HER_PERFIL_PERSONAL SET estado=0 WHERE id_perfil_personal=#{idPerfilPersonal}
+        UPDATE HER_PERFIL_PERSONAL
+        SET estado = 0
+        WHERE id_perfil_personal = #{idPerfilPersonal}
     </delete>
 </mapper>

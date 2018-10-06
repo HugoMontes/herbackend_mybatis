@@ -57,19 +57,25 @@ public class MedicoController {
         LOGGER.info("METHOD: listarMedicos()");
         return medicoService.listar();
     }
+    @PostMapping("/listar")
+    public List<Medico> listarTodo(@RequestBody @Valid Medico medico) {
+        LOGGER.info("METHOD: listarTodo()");
+        return medicoService.listarPorParametros(medico);
+
+    }
 
     @GetMapping("/esplin")
     public List<Medico> listarEspLin() {
         LOGGER.info("METHOD: listarMedicos()");
         return medicoService.listarEspLin();
     }
-
-    @GetMapping("/listar/todo")
-    public List<Medico> listarTodo() {
-        LOGGER.info("METHOD: listarTodo()");
-        return medicoService.listar();
-
+    @GetMapping("/lughortra")
+    public List<Medico> listarHorarioTrabajo() {
+        LOGGER.info("METHOD: listarMedicos()");
+        return medicoService.listarlugarHorarioTrabajo();
     }
+
+
 
     @PostMapping("/obtener")
     public Medico obtener(@RequestBody @Valid Medico medico) {

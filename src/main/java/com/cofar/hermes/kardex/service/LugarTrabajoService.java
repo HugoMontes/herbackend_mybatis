@@ -7,6 +7,8 @@ package com.cofar.hermes.kardex.service;
 
 import com.cofar.hermes.core.util.RegistrationResult;
 import com.cofar.hermes.kardex.models.LugarTrabajo;
+import com.cofar.hermes.kardex.models.Medico;
+
 import java.util.List;
 
 /**
@@ -22,6 +24,8 @@ public interface LugarTrabajoService {
     public abstract RegistrationResult eliminar(Integer idLugarTrabajo);
 
     public abstract List<LugarTrabajo> listar();
+
+    public abstract List<LugarTrabajo> listarPorMedico(Medico medico);
 
     public abstract List<LugarTrabajo> listarPorParametros(LugarTrabajo lugar);
 

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--*
+    *
+    *  @author Al?a?o Dur?n
+    *
+    *-->
+
+<mapper namespace="com.cofar.hermes.rutero.repository.CicloRepository">
+    <resultMap id="CicloMap" type="com.cofar.hermes.rutero.models.Ciclo">
+
+        <id column="id_ciclo" property="idCiclo"/>
+        <result column="id_regional" property="idRegional"/>
+        <result column="id_rutero" property="idRutero"/>
+        <result column="descripcion" property="descripcion"/>
+        <result column="fecha_inicio" property="fechaInicio"/>
+        <result column="fecha_fin" property="fechaFin"/>
+        <result column="nro" property="nro"/>
+        <result column="fecha_ciclo" property="fechaCiclo"/>
+        <result column="estado" property="estado"/>
+    </resultMap>
+
+    <select id="listarPorParametros" resultMap="CicloMap" parameterType="com.cofar.hermes.rutero.models.Ciclo">
+        SELECT * FROM HER_RUT_CICLO WHERE 1=1
+        <if test="idRegional != null">
+            and id_regional =#{idRegional}
+        </if>
+        <if test="idRutero != null">
+            and id_rutero =#{idRutero}
+        </if>
+        <if test="descripcion != null">
+            and descripcion =#{descripcion}
+        </if>
+        <if test="fechaInicio != null">
+            and fecha_inicio =#{fechaInicio}
+        </if>
+        <if test="fechaFin != null">
+            and fecha_fin =#{fechaFin}
+        </if>
+        <if test="nro != null">
+            and nro =#{nro}
+        </if>
+        <if test="fechaCiclo != null">
+            and fecha_ciclo =#{fechaCiclo}
+        </if>
+        <if test="estado != null">
+            and estado =#{estado}
+        </if>
+
+    </select>
+
+    <select id="obtener" resultMap="CicloMap" parameterType="java.lang.Integer">
+    SELECT * FROM HER_RUT_CICLO WHERE ESTADO=1 AND id_ciclo=#{0}
+</select>
+
+    <insert id="registrar" parameterType="com.cofar.hermes.rutero.models.Ciclo">
+ INSERT INTO HER_RUT_CICLO
+(ID_REGIONAL, ID_RUTERO, DESCRIPCION, FECHA_INICIO, FECHA_FIN, NRO, FECHA_CICLO, ESTADO)
+VALUES 
+(#{idRegional}, #{idRutero}, #{descripcion}, #{fechaInicio}, #{fechaFin}, #{nro}, #{fechaCiclo}, 1)
+</insert>
+
+    <update id="actualizar" parameterType="com.cofar.hermes.rutero.models.Ciclo">
+   UPDATE HER_RUT_CICLO SET 
+id_regional=#{idRegional}, 
+id_rutero=#{idRutero}, 
+descripcion=#{descripcion}, 
+fecha_inicio=#{fechaInicio}, 
+fecha_fin=#{fechaFin}, 
+nro=#{nro}, 
+fecha_ciclo=#{fechaCiclo}
+WHERE id_ciclo=#{idCiclo}
+
+</update>
+
+    <update id="eliminar" parameterType="java.lang.Integer">
+   UPDATE HER_RUT_CICLO SET estado=0 WHERE id_ciclo=#{0}
+</update>
+</mapper>

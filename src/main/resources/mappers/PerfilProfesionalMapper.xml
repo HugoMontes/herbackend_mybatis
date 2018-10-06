@@ -11,6 +11,7 @@
     <resultMap id="PerfilProfesionalMap" type="com.cofar.hermes.kardex.models.PerfilProfesional">
 
         <id column="id_perfil_profesional" property="idPerfilProfesional" />
+        <result column="id_medico" property="idMedico" />
         <result column="institucion" property="institucion" />
         <result column="colegas" property="colegas" />
         <result column="usuario_registro" property="usuarioRegistro" />
@@ -47,7 +48,7 @@
     </select>
 
     <select  id = "listar" resultMap = "PerfilProfesionalMap" >
-        SELECT * FROM HER_PERFIL_PROFESIONAL 
+        SELECT * FROM HER_PERFIL_PROFESIONAL  where  ESTADO=1
     </select>
     <select  id = "obtener" resultMap = "PerfilProfesionalMap" parameterType="java.lang.Integer">
         SELECT * FROM HER_PERFIL_PROFESIONAL WHERE ESTADO=1 AND id_perfil_profesional=#{0}

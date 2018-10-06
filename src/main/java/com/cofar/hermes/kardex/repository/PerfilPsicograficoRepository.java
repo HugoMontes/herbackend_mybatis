@@ -12,7 +12,6 @@ import java.util.List;
 import org.springframework.stereotype.Repository;
 
 /**
- *
  * @author aduran
  */
 @Repository
@@ -27,6 +26,8 @@ public interface PerfilPsicograficoRepository {
     public abstract List<PerfilPsicografico> listar();
 
     public abstract List<PerfilPsicografico> listarPorParametros(PerfilPsicografico pefil);
+
+
 
     public abstract PerfilPsicografico obtener(Integer idPerfilPsicografico);
 

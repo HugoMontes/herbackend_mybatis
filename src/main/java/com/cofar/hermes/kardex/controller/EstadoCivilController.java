@@ -8,7 +8,9 @@ package com.cofar.hermes.kardex.controller;
 import com.cofar.hermes.core.util.RegistrationResult;
 import com.cofar.hermes.kardex.models.EstadoCivil;
 import com.cofar.hermes.kardex.service.EstadoCivilService;
+
 import java.util.List;
+
 import org.apache.commons.logging.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -16,12 +18,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.apache.commons.logging.LogFactory;
+
 import javax.validation.Valid;
+
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 /**
- *
  * @author aduran
  */
 @RestController
@@ -34,10 +37,10 @@ public class EstadoCivilController {
 //    @Qualifier("estadoCivilService")
     private EstadoCivilService estadoCivilService;
 
-    @GetMapping("/listar/todo")
-    public List<EstadoCivil> listarTodo() {
+    @PostMapping("/listar")
+    public List<EstadoCivil> listarTodo(@RequestBody @Valid EstadoCivil estadoCivil) {
         LOGGER.info("METHOD: listarEstadoCivileTodo()");
-        return estadoCivilService.listar();
+        return estadoCivilService.listarPorParametroa(estadoCivil);
     }
 
     @GetMapping("/listar")

@@ -26,7 +26,7 @@ public interface EstadoCivilRepository {
 
     public abstract List<EstadoCivil> listarIdDescripcion();
 
-    public abstract List<EstadoCivil> listarPorParametroa(EstadoCivil estadoCivil);
+    public abstract List<EstadoCivil> listarPorParametros(EstadoCivil estadoCivil);
 
     public abstract EstadoCivil obtener(Integer idEstadoCivil);
 

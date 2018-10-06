@@ -8,8 +8,10 @@ package com.cofar.hermes.kardex.controller;
 import com.cofar.hermes.core.util.RegistrationResult;
 import com.cofar.hermes.kardex.models.FarmaciaReferencia;
 import com.cofar.hermes.kardex.service.FarmaciaReferenciaService;
+
 import java.util.List;
 import javax.validation.Valid;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +23,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- *
  * @author aduran
  */
 @RestController
@@ -33,10 +34,10 @@ public class FarmaciaReferenciaController {
 //    @Qualifier("farmaciaReferenciaService")
     private FarmaciaReferenciaService farmaciaReferenciaService;
 
-    @GetMapping("/listar/todo")
-    public List<FarmaciaReferencia> listarTodo() {
+    @PostMapping("/listar")
+    public List<FarmaciaReferencia> listarTodo(@RequestBody @Valid FarmaciaReferencia farmacia) {
         LOGGER.info("METHOD: listarFarmaciaReferenciaeTodo()");
-        return farmaciaReferenciaService.listar();
+        return farmaciaReferenciaService.listarPorParametros(farmacia);
     }
 
     @GetMapping("/listar")

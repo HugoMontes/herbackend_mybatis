@@ -18,11 +18,21 @@ public class Linea {
 
     private Integer idLinea;
     private String descripcion;
+    private String abreviacion;
     private Integer usuarioRegistro;
     private Integer usuarioModificacion;
     private Date fechaRegistro;
     private Date fechaModificacion;
     private int estado;
+
+    public String getAbreviacion() {
+        return abreviacion;
+    }
+
+    public void setAbreviacion(String abreviacion) {
+        this.abreviacion = abreviacion;
+    }
+
 
     public Integer getIdLinea() {
         return idLinea;

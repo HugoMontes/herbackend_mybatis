@@ -7,10 +7,11 @@ package com.cofar.hermes.kardex.service;
 
 import com.cofar.hermes.core.util.RegistrationResult;
 import com.cofar.hermes.kardex.models.HorarioTrabajo;
+import com.cofar.hermes.kardex.models.LugarTrabajo;
+
 import java.util.List;
 
 /**
- *
  * @author aduran
  */
 public interface HorarioTrabajoService {
@@ -22,6 +23,8 @@ public interface HorarioTrabajoService {
     public abstract RegistrationResult eliminar(HorarioTrabajo horario);
 
     public abstract List<HorarioTrabajo> listar();
+
+    public abstract List<HorarioTrabajo> listarPorLugarTrabajo(LugarTrabajo lugarTrabajo);
 
     public abstract List<HorarioTrabajo> listarPorParametros(HorarioTrabajo horario);
 

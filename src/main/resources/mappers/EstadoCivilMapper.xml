@@ -52,7 +52,7 @@
 
     </select>
     <select  id = "listar" resultMap = "EstadoCivilMap" parameterType="com.cofar.hermes.kardex.models.EstadoCivil">
-        SELECT * FROM HER_ESTADO_CIVIL 
+        SELECT * FROM HER_ESTADO_CIVIL where  ESTADO=1
     </select>
     <select  id = "listarIdDescripcion" resultMap = "EstadoCivilMap02">
         SELECT id_estado_civil , descripcion FROM HER_ESTADO_CIVIL WHERE  ESTADO=1 

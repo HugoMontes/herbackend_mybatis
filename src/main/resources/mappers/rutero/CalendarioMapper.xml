@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--*
+    *
+    *  @author Al?a?o Dur?n
+    *
+    *-->
+
+<mapper namespace="com.cofar.hermes.rutero.repository.CalendarioRepository">
+    <resultMap id="CalendarioMap" type="com.cofar.hermes.rutero.models.Calendario">
+
+        <id column="id_calendario" property="idCalendario"/>
+        <result column="id_ciclo" property="idCiclo"/>
+        <result column="id_tipo_calendario" property="idTipoCalendario"/>
+        <result column="descripcion" property="descripcion"/>
+        <result column="fecha_inhabiliado" property="fechaInhabiliado"/>
+        <result column="usuario_registro" property="usuarioRegistro"/>
+        <result column="usuario_modificacion" property="usuarioModificacion"/>
+        <result column="fecha_registro" property="fechaRegistro"/>
+        <result column="fecha_modificacion" property="fechaModificacion"/>
+        <result column="estado" property="estado"/>
+    </resultMap>
+
+    <select id="listarPorParametros" resultMap="CalendarioMap"
+            parameterType="com.cofar.hermes.rutero.models.Calendario">
+        SELECT * FROM HER_RUT_CALENDARIO WHERE 1=1
+        <if test="idCiclo != null">
+            and id_ciclo =#{idCiclo}
+        </if>
+        <if test="idTipoCalendario != null">
+            and id_tipo_calendario =#{idTipoCalendario}
+        </if>
+        <if test="descripcion != null">
+            and descripcion =#{descripcion}
+        </if>
+        <if test="fechaInhabiliado != null">
+            and fecha_inhabiliado =#{fechaInhabiliado}
+        </if>
+        <if test="usuarioRegistro != null">
+            and usuario_registro =#{usuarioRegistro}
+        </if>
+        <if test="usuarioModificacion != null">
+            and usuario_modificacion =#{usuarioModificacion}
+        </if>
+        <if test="fechaRegistro != null">
+            and fecha_registro =#{fechaRegistro}
+        </if>
+        <if test="fechaModificacion != null">
+            and fecha_modificacion =#{fechaModificacion}
+        </if>
+        <if test="estado != null">
+            and estado =#{estado}
+        </if>
+
+    </select>
+
+    <select id="obtener" resultMap="CalendarioMap" parameterType="java.lang.Integer">
+    SELECT * FROM HER_RUT_CALENDARIO WHERE ESTADO=1 AND id_calendario=#{0}
+</select>
+
+    <insert id="registrar" parameterType="com.cofar.hermes.rutero.models.Calendario">
+ INSERT INTO HER_RUT_CALENDARIO
+( ID_CICLO, ID_TIPO_CALENDARIO, DESCRIPCION, FECHA_INHABILIADO, USUARIO_REGISTRO, USUARIO_MODIFICACION, FECHA_REGISTRO, FECHA_MODIFICACION, ESTADO)
+VALUES 
+( #{idCiclo}, #{idTipoCalendario}, #{descripcion}, #{fechaInhabiliado}, #{usuarioRegistro}, #{usuarioModificacion}, sysdatetime(), sysdatetime(), 1)
+</insert>
+
+    <update id="actualizar" parameterType="com.cofar.hermes.rutero.models.Calendario">
+   UPDATE HER_RUT_CALENDARIO SET
+   id_ciclo=#{idCiclo},
+id_tipo_calendario=#{idTipoCalendario},
+descripcion=#{descripcion}, 
+fecha_inhabiliado=#{fechaInhabiliado}, 
+usuario_modificacion=#{usuarioModificacion},
+fecha_modificacion=sysdatetime()
+WHERE id_calendario=#{idCalendario}
+
+</update>
+
+    <update id="eliminar" parameterType="java.lang.Integer">
+   UPDATE HER_RUT_CALENDARIO SET estado=0 WHERE id_calendario=#{0}
+</update>
+</mapper>

@@ -1,6 +1,7 @@
 package com.cofar.hermes.kardex.controller;
 
 import com.cofar.hermes.core.util.RegistrationResult;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +11,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.cofar.hermes.kardex.models.Direccion;
 import com.cofar.hermes.kardex.service.DireccionService;
+
 import javax.validation.Valid;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,19 +28,18 @@ public class DireccionController {
     @Autowired
     private DireccionService direccionService;
 
-    @GetMapping("/listar")
-    public List<Direccion> prueba() {
-
-        return direccionService.listarIdDescripcion();
+    @PostMapping("/listar")
+    public List<Direccion> prueba(@RequestBody @Valid Direccion direccion) {
+        return direccionService.listarPorParametros(direccion);
     }
 
-    @GetMapping("/listar/todo")
+    @GetMapping("/listar    ")
     public List<Direccion> listarTodo() {
         LOGGER.info("METHOD: listarNotas()");
         return direccionService.listar();
     }
 
-//    @GetMapping("/listar")
+    //    @GetMapping("/listar")
 //    public List<DireccionEntity> listarDirecciones() {
 //        LOGGER.info("METHOD: listarNotas()");
 //        return direccionService.listar();

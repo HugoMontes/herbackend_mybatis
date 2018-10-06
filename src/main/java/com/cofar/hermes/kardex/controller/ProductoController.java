@@ -31,13 +31,12 @@ public class ProductoController {
     private static final Log LOGGER = LogFactory.getLog(ProductoController.class);
 
     @Autowired
-//    @Qualifier("productoService")
     private ProductoService productoService;
 
-    @GetMapping("/listar/todo")
-    public List<Producto> listarTodo() {
+    @PostMapping("/listar")
+    public List<Producto> listarTodo(@RequestBody @Valid Producto producto) {
         LOGGER.info(" METHOD listar Todo Productos");
-        return productoService.listar();
+        return productoService.listarPorParametros(producto);
     }
 
     @GetMapping("/listar")

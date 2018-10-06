@@ -10,19 +10,27 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import java.util.Date;
 
 /**
- *
  * @author aduran
  */
 @JsonInclude(JsonInclude.Include.NON_DEFAULT)
 public class PerfilPsicografico {
 
     private Integer idPerfilPsicografico;
+    private Integer idMedico;
     private String descripcion;
     private Integer usuarioRegistro;
     private Integer usuarioModificacion;
     private Date fechaRegistro;
     private Date fechaModificacion;
     private int estado;
+
+    public Integer getIdMedico() {
+        return idMedico;
+    }
+
+    public void setIdMedico(Integer idMedico) {
+        this.idMedico = idMedico;
+    }
 
     public Integer getIdPerfilPsicografico() {
         return idPerfilPsicografico;

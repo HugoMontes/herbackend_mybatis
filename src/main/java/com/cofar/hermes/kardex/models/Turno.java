@@ -10,7 +10,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import java.util.Date;
 
 /**
- *
  * @author aduran
  */
 @JsonInclude(JsonInclude.Include.NON_DEFAULT)
@@ -18,8 +17,26 @@ public class Turno {
 
     private Integer idTurno;
     private String descripcion;
-    private Date hora;
+    private Date horaAtencionInicio;
+    private Date horaAtencionFin;
     private int estado;
+
+
+    public Date getHoraAtencionInicio() {
+        return horaAtencionInicio;
+    }
+
+    public void setHoraAtencionInicio(Date horaAtencionInicio) {
+        this.horaAtencionInicio = horaAtencionInicio;
+    }
+
+    public Date getHoraAtencionFin() {
+        return horaAtencionFin;
+    }
+
+    public void setHoraAtencionFin(Date horaAtencionFin) {
+        this.horaAtencionFin = horaAtencionFin;
+    }
 
     public Integer getIdTurno() {
         return idTurno;
@@ -37,13 +54,6 @@ public class Turno {
         this.descripcion = descripcion;
     }
 
-    public Date getHora() {
-        return hora;
-    }
-
-    public void setHora(Date hora) {
-        this.hora = hora;
-    }
 
     public int getEstado() {
         return estado;

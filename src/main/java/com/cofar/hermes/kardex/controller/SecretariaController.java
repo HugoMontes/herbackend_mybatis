@@ -34,10 +34,10 @@ public class SecretariaController {
 //    @Qualifier("secretariaService")
     private SecretariaService secretariaService;
 
-    @GetMapping("/listar/todo")
-    public List<Secretaria> listarTodo() {
+    @PostMapping("/listar")
+    public List<Secretaria> listarTodo(@RequestBody @Valid Secretaria secretaria) {
         LOGGER.info(" METHOD listar Todo Secretarias");
-        return secretariaService.listar();
+        return secretariaService.listarPorParametros(secretaria);
     }
 
     @GetMapping("/listar")

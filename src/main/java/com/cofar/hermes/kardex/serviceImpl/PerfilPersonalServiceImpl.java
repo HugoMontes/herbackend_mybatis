@@ -50,6 +50,7 @@ public class PerfilPersonalServiceImpl implements PerfilPersonalService {
 
     @Override
     public List<PerfilPersonal> listarPorParametros(PerfilPersonal perfil) {
+        System.out.println("PF : "+perfil.getIdMedico());
         return perfilPersonalRepository.listarPorParametros(perfil);
     }
 

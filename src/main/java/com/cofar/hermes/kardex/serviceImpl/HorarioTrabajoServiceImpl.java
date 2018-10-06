@@ -8,15 +8,17 @@ package com.cofar.hermes.kardex.serviceImpl;
 import com.cofar.hermes.core.service.AdmUsuarioServiceLoguin;
 import com.cofar.hermes.core.util.RegistrationResult;
 import com.cofar.hermes.kardex.models.HorarioTrabajo;
+import com.cofar.hermes.kardex.models.LugarTrabajo;
 import com.cofar.hermes.kardex.repository.HorarioTrabajoRepository;
 import com.cofar.hermes.kardex.service.HorarioTrabajoService;
+
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
- *
  * @author aduran
  */
 @Service
@@ -27,6 +29,7 @@ public class HorarioTrabajoServiceImpl implements HorarioTrabajoService {
     private HorarioTrabajoRepository horarioTrabajoRepository;
     @Autowired
     private AdmUsuarioServiceLoguin loginService;
+
     @Override
     public RegistrationResult actualizar(HorarioTrabajo horario) {
         RegistrationResult res = new RegistrationResult();
@@ -69,4 +72,8 @@ public class HorarioTrabajoServiceImpl implements HorarioTrabajoService {
         return horarioTrabajoRepository.obtener(idHorarioTrabajo);
     }
 
+    @Override
+    public List<HorarioTrabajo> listarPorLugarTrabajo(LugarTrabajo lugarTrabajo) {
+        return horarioTrabajoRepository.listarPorLugarTrabajo(lugarTrabajo.getIdLugarTrabajo());
+    }
 }

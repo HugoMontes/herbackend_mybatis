@@ -7,9 +7,12 @@ package com.cofar.hermes.kardex.controller;
 
 import com.cofar.hermes.core.util.RegistrationResult;
 import com.cofar.hermes.kardex.models.HorarioTrabajo;
+import com.cofar.hermes.kardex.models.LugarTrabajo;
 import com.cofar.hermes.kardex.service.HorarioTrabajoService;
+
 import java.util.List;
 import javax.validation.Valid;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,11 +24,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- *
  * @author aduran
  */
 @RestController
-@RequestMapping("/kardex/horarioTrabajo")
+@RequestMapping("/kardex/horariotrabajo")
 public class HorarioTrabajoController {
 
     private static final Log LOGGER = LogFactory.getLog(HorarioTrabajoController.class);
@@ -34,12 +36,11 @@ public class HorarioTrabajoController {
 //    @Qualifier("horarioTrabajoService")
     private HorarioTrabajoService horarioTrabajoService;
 
-    @GetMapping("/listar/todo")
-    public List<HorarioTrabajo> listarTodo() {
+    @PostMapping("/listar")
+    public List<HorarioTrabajo> listarTodo(@RequestBody @Valid HorarioTrabajo horario) {
         LOGGER.info("METHOD: listarHorarioTrabajoTodo()");
-
         System.out.println("====> Controller ===>");
-        return horarioTrabajoService.listar();
+        return horarioTrabajoService.listarPorParametros(horario);
     }
 
     @GetMapping("/listar")
@@ -48,6 +49,13 @@ public class HorarioTrabajoController {
 
         System.out.println("====> Controller ===>");
         return horarioTrabajoService.listar();
+    }
+
+    @PostMapping("/listarporlugartrabajo")
+    public List<HorarioTrabajo> listarPorLugarTrabajo(@RequestBody @Valid LugarTrabajo lugarTrabajo) {
+        LOGGER.info("METHOD: listarporLugarTrabajo()");
+        System.out.println(" ==> "+lugarTrabajo.getIdLugarTrabajo());
+        return horarioTrabajoService.listarPorLugarTrabajo(lugarTrabajo);
     }
 
     @PostMapping("/obtener")

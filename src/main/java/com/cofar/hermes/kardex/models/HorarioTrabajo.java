@@ -24,6 +24,16 @@ public class HorarioTrabajo {
     private boolean viernes;
     private Integer tipoHorario;
 
+    private Turno turno;
+
+    public Turno getTurno() {
+        return turno;
+    }
+
+    public void setTurno(Turno turno) {
+        this.turno = turno;
+    }
+
     public Integer getIdHorarioTrabajo() {
         return idHorarioTrabajo;
     }
@@ -40,13 +50,13 @@ public class HorarioTrabajo {
         this.idLugarTrabajo = idLugarTrabajo;
     }
 
-    public Integer getIdTurno() {
-        return idTurno;
-    }
-
-    public void setIdTurno(Integer idTurno) {
-        this.idTurno = idTurno;
-    }
+//    public Integer getIdTurno() {
+//        return idTurno;
+//    }
+//
+//    public void setIdTurno(Integer idTurno) {
+//        this.idTurno = idTurno;
+//    }
 
     public boolean isLunes() {
         return lunes;

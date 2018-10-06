@@ -6,7 +6,6 @@
 *  @author Al?a?o Dur?n
 *
 *-->
-
 <mapper namespace="com.cofar.hermes.kardex.repository.MedicoRepository">
     <resultMap id="MedicoMap" type="com.cofar.hermes.kardex.models.Medico">
 
@@ -39,9 +38,20 @@
             <!--<id column="id_especialidad" property= "idEspecialidad"  javaType="Integer"/>-->
             <id column="des_esp" property="descripcion" javaType="String"/>
         </collection>
-        <collection property="lstLinea" ofType="com.cofar.hermes.kardex.models.Linea" autoMapping="true">
-            <!--<id column="id_especialidad" property= "idEspecialidad"  javaType="Integer"/>-->
-            <id column="des_lin" property="descripcion" javaType="String"/>
+    </resultMap>
+
+
+        <!--Pendiente aun se puede hacer -->
+    <resultMap id="MedicoMap03" type="com.cofar.hermes.kardex.models.Medico" autoMapping="false">
+        <result column="id_medico" property="idMedico"/>
+        <collection property="lstLugarTrabajo" ofType="com.cofar.hermes.kardex.models.LugarTrabajo" autoMapping="true"
+                    javaType="java.util.ArrayList">
+            <result column="lugar_trabajo" property="descripcion"/>
+            <result column="nombre_sec" property="nombreSecretaria"/>
+            <!--<association property="lsthorarioTrabajo"  autoMapping="true" javaType="com.cofar.hermes.kardex.models.HorarioTrabajo" >-->
+            <!--<result column="lunes" property="lunes"/>-->
+
+            <!--</association>-->
         </collection>
     </resultMap>
 
@@ -113,6 +123,26 @@
         order by FECHA_REGISTRO desc
     </select>
 
+    <select id="listarlugarHorarioTrabajo" resultMap="MedicoMap03">
+        select
+          me.ID_MEDICO,
+          tr.DESCRIPCION as LUGAR_TRABAJO,
+          sec.AP_PATERNO + ' ' + sec.AP_MATERNO + ' ' + sec.NOMBRES as NOMBRE_SEC,
+          htr.LUNES,
+          htr.MARTES,
+          htr.MIERCOLES,
+          htr.JUEVES,
+          htr.VIERNES,
+          tu.HORA_ATENCION_INICIO,
+          tu.HORA_ATENCION_FIN
+        from HER_MEDICO me
+          left JOIN HER_LUGAR_TRABAJO tr on me.ID_MEDICO = tr.ID_MEDICO
+          left join HER_SECRETARIA sec on tr.ID_SECRETARIA = sec.ID_SECRETARIA
+          left join HER_HORARIO_TRABAJO htr on htr.ID_LUGAR_TRABAJO = tr.ID_LUGAR_TRABAJO
+          left join HER_TURNO tu on tu.ID_TURNO = htr.ID_TURNO
+        order by me.ID_MEDICO
+    </select>
+
     <select id="listarP" resultMap="MedicoMap">
         SELECT * FROM HER_MEDICO
     </select>
@@ -141,7 +171,8 @@
         SELECT * FROM HER_MEDICO WHERE ESTADO=1 AND id_medico=#{0}
     </select>
 
-    <insert id="registrar" useGeneratedKeys="true" keyProperty="idMedico" parameterType="com.cofar.hermes.kardex.models.Medico">
+    <insert id="registrar" useGeneratedKeys="true" keyProperty="idMedico"
+            parameterType="com.cofar.hermes.kardex.models.Medico">
         INSERT INTO HER_MEDICO
         (ID_ESTADO_CIVIL, ID_REGIONAL, AP_PATERNO, AP_MATERNO, NOMBRES, FECHA_NACIMIENTO, TELEFONO, CELULAR,
         CORREO_ELECTRONICO, GENERO, USUARIO_REGISTRO, USUARIO_MODIFICACION, FECHA_REGISTRO, FECHA_MODIFICACION, ESTADO)
@@ -155,9 +186,9 @@
         (#{idPerfilProfesional}, #{idPerfilPsicografico}, #{idPerfilPersonal}, #{idEstadoCivil}, #{idRegional}, #{apPaterno}, #{apMaterno}, #{nombres}, #{fechaNacimiento}, #{telefono}, #{celular}, #{correoElectronico}, #{genero}, #{nombreHijosEdad}, #{usuarioRegistro}, #{usuarioModificacion}, sysdatetime(),sysdatetime(), 1)-->
 
         <!--<selectKey resultType="java.lang.Integer" keyProperty="idMedico" order="AFTER">-->
-            <!--<![CDATA[-->
-   <!--SELECT IDENT_CURRENT('her_medico') as idMedico-->
-<!--]]>-->
+        <!--<![CDATA[-->
+        <!--SELECT IDENT_CURRENT('her_medico') as idMedico-->
+        <!--]]>-->
         <!--</selectKey>-->
     </insert>
 

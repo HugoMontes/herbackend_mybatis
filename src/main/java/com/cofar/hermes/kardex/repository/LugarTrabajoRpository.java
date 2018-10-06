@@ -6,11 +6,12 @@
 package com.cofar.hermes.kardex.repository;
 
 import com.cofar.hermes.kardex.models.LugarTrabajo;
+
 import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 
 /**
- *
  * @author aduran
  */
 @Mapper
@@ -23,6 +24,8 @@ public interface LugarTrabajoRpository {
     public abstract Integer eliminar(Integer idLugarTrabajo);
 
     public abstract List<LugarTrabajo> listar();
+
+    public abstract List<LugarTrabajo> listarPorMedico(Integer idMedico);
 
     public abstract List<LugarTrabajo> listarPorParametros(LugarTrabajo lugar);
 

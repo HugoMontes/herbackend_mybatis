@@ -87,6 +87,11 @@ public class MedicoServiceImpl implements MedicoService {
     }
 
     @Override
+    public List<Medico> listarlugarHorarioTrabajo() {
+        return medicoRepository.listarlugarHorarioTrabajo();
+    }
+
+    @Override
     public List<Medico> listarEspLin() {
         return medicoRepository.listarEspLin();
     }

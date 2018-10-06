@@ -34,10 +34,10 @@ public class EspecialidadController {
 //    @Qualifier("especialidadService")
     private EspecialidadService especialidadService;
 
-    @GetMapping("/listar/todo")
-    public List<Especialidad> listarTodo() {
+    @PostMapping("/listar")
+    public List<Especialidad> listarTodo(@RequestBody @Valid Especialidad especialidad) {
         LOGGER.info("METHOD: listarEspecialidadesTodo()");
-        return especialidadService.listar();
+        return especialidadService.listarPorParametros(especialidad);
     }
 
     @GetMapping("/listar")

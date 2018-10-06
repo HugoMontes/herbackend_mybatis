@@ -8,8 +8,10 @@ package com.cofar.hermes.kardex.controller;
 import com.cofar.hermes.core.util.RegistrationResult;
 import com.cofar.hermes.kardex.models.PerfilPersonal;
 import com.cofar.hermes.kardex.service.PerfilPersonalService;
+
 import java.util.List;
 import javax.validation.Valid;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +23,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- *
  * @author aduran
  */
 @RestController
@@ -33,16 +34,17 @@ public class PerfilPersonalController {
 //    @Qualifier("perfilPersonalService")
     private PerfilPersonalService perfilPersonalService;
 
-    @GetMapping("/listar/todo")
+    @GetMapping("/listar")
     public List<PerfilPersonal> listarTodo() {
         LOGGER.info(" METHOD listarTodo perfilPersonal");
         return perfilPersonalService.listar();
     }
 
-    @GetMapping("/listar")
-    public List<PerfilPersonal> listarPerfilPersonal() {
-        LOGGER.info(" METHOD listarPerfilPersonal");
-        return perfilPersonalService.listar();
+    @PostMapping("/listar")
+    public List<PerfilPersonal> listarPerfilPersonal(@RequestBody @Valid PerfilPersonal perfil) {
+        LOGGER.info(" METHOD listarPerfilPersonal_POST");
+
+        return perfilPersonalService.listarPorParametros(perfil);
     }
 
     @PostMapping("/obtener")

@@ -31,13 +31,12 @@ public class PerfilPsicograficoController {
     private static final Log LOGGER = LogFactory.getLog(PerfilPsicograficoController.class);
 
     @Autowired
-//    @Qualifier("perfilPsicograficoService")
     private PerfilPsicograficoService perfilPsicograficoService;
 
-    @GetMapping("/listar/todo")
-    public List<PerfilPsicografico> listarTodo() {
+    @PostMapping("/listar")
+    public List<PerfilPsicografico> listarTodo(@RequestBody @Valid PerfilPsicografico perfil) {
         LOGGER.info(" METHOD listarTodo perfilPsicografico");
-        return perfilPsicograficoService.listar();
+        return perfilPsicograficoService.listarPorParametros(perfil);
     }
 
     @GetMapping("/listar")

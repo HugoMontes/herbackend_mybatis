@@ -6,11 +6,12 @@
 package com.cofar.hermes.kardex.repository;
 
 import com.cofar.hermes.kardex.models.HorarioTrabajo;
+
 import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 
 /**
- *
  * @author aduran
  */
 @Mapper
@@ -23,6 +24,8 @@ public interface HorarioTrabajoRepository {
     public abstract Integer eliminar(HorarioTrabajo horario);
 
     public abstract List<HorarioTrabajo> listar();
+
+    public abstract List<HorarioTrabajo> listarPorLugarTrabajo(Integer idLugarTrabajo);
 
     public abstract List<HorarioTrabajo> listarPorParametros(HorarioTrabajo horario);
 

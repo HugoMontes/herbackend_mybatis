@@ -35,4 +35,6 @@ public interface MedicoService {
     public abstract Page<Medico> listarP(Pageable pageable);
 
     public abstract Page<Medico> findAll(Pageable pageable);
+
+    public abstract List<Medico> listarlugarHorarioTrabajo();
 }

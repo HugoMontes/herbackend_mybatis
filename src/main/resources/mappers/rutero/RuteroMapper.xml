@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--*
+    *
+    *  @author Al?a?o Dur?n
+    *
+    *-->
+
+<mapper namespace="com.cofar.hermes.rutero.repository.RuteroRepository">
+    <resultMap id="RuteroMap" type="com.cofar.hermes.rutero.models.Rutero">
+
+        <id column="id_rutero" property="idRutero"/>
+        <result column="id_rutero_tipo" property="idRuteroTipo"/>
+        <result column="nombre_rutero" property="nombreRutero"/>
+        <result column="estado_aprobacion" property="estadoAprobacion"/>
+        <result column="gestion" property="gestion"/>
+        <result column="usuario_registro" property="usuarioRegistro"/>
+        <result column="usuario_modificacion" property="usuarioModificacion"/>
+        <result column="fecha_registro" property="fechaRegistro"/>
+        <result column="fecha_modificacion" property="fechaModificacion"/>
+        <result column="estado" property="estado"/>
+    </resultMap>
+
+    <select id="listarPorParametros" resultMap="RuteroMap" parameterType="com.cofar.hermes.rutero.models.Rutero">
+        SELECT * FROM HER_RUT_RUTERO WHERE 1=1
+        <if test="idRuteroTipo != null">
+            and id_rutero_tipo =#{idRuteroTipo}
+        </if>
+        <if test="nombreRutero != null">
+            and nombre_rutero =#{nombreRutero}
+        </if>
+        <if test="estadoAprobacion != null">
+            and estado_aprobacion =#{estadoAprobacion}
+        </if>
+        <if test="gestion != null">
+            and gestion =#{gestion}
+        </if>
+        <if test="usuarioRegistro != null">
+            and usuario_registro =#{usuarioRegistro}
+        </if>
+        <if test="usuarioModificacion != null">
+            and usuario_modificacion =#{usuarioModificacion}
+        </if>
+        <if test="fechaRegistro != null">
+            and fecha_registro =#{fechaRegistro}
+        </if>
+        <if test="fechaModificacion != null">
+            and fecha_modificacion =#{fechaModificacion}
+        </if>
+        <if test="estado != null">
+            and estado =#{estado}
+        </if>
+
+    </select>
+
+    <select id="obtener" resultMap="RuteroMap" parameterType="java.lang.Integer">
+    SELECT * FROM HER_RUT_RUTERO WHERE ESTADO=1 AND id_rutero=#{0}
+</select>
+
+    <insert id="registrar" parameterType="com.cofar.hermes.rutero.models.Rutero">
+ INSERT INTO HER_RUT_RUTERO
+(ID_RUTERO_TIPO, NOMBRE_RUTERO, ESTADO_APROBACION, GESTION, USUARIO_REGISTRO, USUARIO_MODIFICACION, FECHA_REGISTRO, FECHA_MODIFICACION, ESTADO)
+VALUES 
+(#{idRuteroTipo}, #{nombreRutero}, #{estadoAprobacion}, #{gestion}, #{usuarioRegistro}, #{usuarioModificacion}, #{fechaRegistro}, #{fechaModificacion}, #{estado})
+</insert>
+
+    <update id="actualizar" parameterType="com.cofar.hermes.rutero.models.Rutero">
+   UPDATE HER_RUT_RUTERO SET 
+id_rutero_tipo=#{idRuteroTipo}, 
+nombre_rutero=#{nombreRutero}, 
+estado_aprobacion=#{estadoAprobacion}, 
+gestion=#{gestion}, 
+usuario_modificacion=#{usuarioModificacion},
+fecha_modificacion=#{fechaModificacion}
+WHERE id_rutero=#{idRutero}
+
+</update>
+
+    <update id="eliminar" parameterType="java.lang.Integer">
+   UPDATE HER_RUT_RUTERO SET estado=0 WHERE id_rutero=#{0}
+</update>
+</mapper>

@@ -17,6 +17,7 @@ import java.util.Date;
 public class PerfilPersonal {
 
     private Integer idPerfilPersonal;
+    private Integer idMedico;
     private String nombreConyugue;
     private String nombreHijosEdad;
     private String origenFamilia;
@@ -34,6 +35,14 @@ public class PerfilPersonal {
     private Date fechaRegistro;
     private Date fechaModificacion;
     private int estado;
+
+    public Integer getIdMedico() {
+        return idMedico;
+    }
+
+    public void setIdMedico(Integer idMedico) {
+        this.idMedico = idMedico;
+    }
 
     public Integer getIdPerfilPersonal() {
         return idPerfilPersonal;

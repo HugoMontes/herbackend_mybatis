@@ -46,7 +46,7 @@
 
     </select>
     <select  id = "listar" resultMap = "FarmaciaReferenciaMap" parameterType="com.cofar.hermes.kardex.models.FarmaciaReferencia">
-        SELECT * FROM HER_FARMACIA_REFERENCIA 
+        SELECT * FROM HER_FARMACIA_REFERENCIA where ESTADO=1
     </select>
 
     <select  id = "obtener" resultMap = "FarmaciaReferenciaMap" parameterType="java.lang.Integer">
@@ -55,7 +55,7 @@
 
     <insert id="registrar" parameterType="com.cofar.hermes.kardex.models.FarmaciaReferencia">
         INSERT INTO HER_FARMACIA_REFERENCIA
-        NOMBRE_FARMACIA, DIRECCION_FARMACIA, USUARIO_REGISTRO, USUARIO_MODIFICACION, FECHA_REGISTRO, FECHA_MODIFICACION, ESTADO) 
+        (NOMBRE_FARMACIA, DIRECCION_FARMACIA, USUARIO_REGISTRO, USUARIO_MODIFICACION, FECHA_REGISTRO, FECHA_MODIFICACION, ESTADO)
         VALUES 
         (#{nombreFarmacia}, #{direccionFarmacia}, #{usuarioRegistro}, #{usuarioModificacion}, sysdatetime(), sysdatetime(), 1)
     </insert>

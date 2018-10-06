@@ -6,10 +6,10 @@
 package com.cofar.hermes.kardex.models;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+
 import java.util.Date;
 
 /**
- *
  * @author aduran
  */
 //@JsonInclude(Include.NON_NULL)
@@ -17,14 +17,21 @@ import java.util.Date;
 public class Especialidad {
 
     private Integer idEspecialidad;
-    private Integer idMedico;
     private String descripcion;
-    private Date fechaObtencionEspecialidad;
-    private String lugarObtencionEspecialidad;
+    private String abreviacion;
     private Integer usuarioRegistro;
     private Integer usuarioModificacion;
     private Date fechaRegistro;
     private Date fechaModificacion;
+    private int estado;
+
+    public String getAbreviacion() {
+        return abreviacion;
+    }
+
+    public void setAbreviacion(String abreviacion) {
+        this.abreviacion = abreviacion;
+    }
 
     public Integer getIdEspecialidad() {
         return idEspecialidad;
@@ -34,36 +41,12 @@ public class Especialidad {
         this.idEspecialidad = idEspecialidad;
     }
 
-    public Integer getIdMedico() {
-        return idMedico;
-    }
-
-    public void setIdMedico(Integer idMedico) {
-        this.idMedico = idMedico;
-    }
-
     public String getDescripcion() {
         return descripcion;
     }
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
-    }
-
-    public Date getFechaObtencionEspecialidad() {
-        return fechaObtencionEspecialidad;
-    }
-
-    public void setFechaObtencionEspecialidad(Date fechaObtencionEspecialidad) {
-        this.fechaObtencionEspecialidad = fechaObtencionEspecialidad;
-    }
-
-    public String getLugarObtencionEspecialidad() {
-        return lugarObtencionEspecialidad;
-    }
-
-    public void setLugarObtencionEspecialidad(String lugarObtencionEspecialidad) {
-        this.lugarObtencionEspecialidad = lugarObtencionEspecialidad;
     }
 
     public Integer getUsuarioRegistro() {
@@ -105,6 +88,6 @@ public class Especialidad {
     public void setEstado(int estado) {
         this.estado = estado;
     }
-    private int estado;
+
 
 }

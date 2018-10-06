@@ -53,7 +53,7 @@ public class EstadoCivilServiceImpl implements EstadoCivilService {
 
     @Override
     public List<EstadoCivil> listarPorParametroa(EstadoCivil estadoCivil) {
-        return estadoCivilRepository.listarPorParametroa(estadoCivil);
+        return estadoCivilRepository.listarPorParametros(estadoCivil);
     }
 
     @Override

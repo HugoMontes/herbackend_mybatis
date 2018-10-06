@@ -5,6 +5,7 @@
 <mapper namespace="com.cofar.hermes.kardex.repository.DireccionRepository">
     <resultMap id="DireccionMap" type="com.cofar.hermes.kardex.models.Direccion">
         <id column="id_direccion" property="idDireccion" />
+        <result column="id_lugar_trabajo" property="idLugarTrabajo" />
         <result column="direccion" property="direccion" />
         <result column="nro_direccion" property="nroDireccion" />
         <result column="telefono" property="telefono" />
@@ -23,7 +24,7 @@
     </resultMap>
     
     <select id="listar" resultMap ="DireccionMap">
-        select * from HER_DIRECCION 
+        select * from HER_DIRECCION WHERE ESTADO=1
     </select>
     <select id="listarIdDescripcion" resultMap ="DireccionMap02">
         select d.ID_DIRECCION,d.DIRECCION

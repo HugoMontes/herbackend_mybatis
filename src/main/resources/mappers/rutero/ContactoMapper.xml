@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--*
+    *
+    *  @author Al?a?o Dur?n
+    *
+    *-->
+
+<mapper namespace="com.cofar.hermes.rutero.repository.ContactoRepository">
+    <resultMap id="ContactoMap" type="com.cofar.hermes.rutero.models.Contacto">
+
+        <id column="id_contacto" property="idContacto"/>
+        <result column="id_med_espe" property="idMedEspe"/>
+        <result column="id_rutero" property="idRutero"/>
+        <result column="nro" property="nro"/>
+        <result column="orden" property="orden"/>
+        <result column="fecha_visita" property="fechaVisita"/>
+        <result column="estado" property="estado"/>
+    </resultMap>
+
+    <select id="listarPorParametros" resultMap="ContactoMap" parameterType="com.cofar.hermes.rutero.models.Contacto">
+        SELECT * FROM HER_RUT_CONTACTO WHERE 1=1
+        <if test="idMedEspe != null">
+            and id_med_espe =#{idMedEspe}
+        </if>
+        <if test="idRutero != null">
+            and id_rutero =#{idRutero}
+        </if>
+        <if test="nro != null">
+            and nro =#{nro}
+        </if>
+        <if test="orden != null">
+            and orden =#{orden}
+        </if>
+        <if test="fechaVisita != null">
+            and fecha_visita =#{fechaVisita}
+        </if>
+        <if test="estado != null">
+            and estado =#{estado}
+        </if>
+
+    </select>
+
+    <select id="obtener" resultMap="ContactoMap" parameterType="java.lang.Integer">
+    SELECT * FROM HER_RUT_CONTACTO WHERE ESTADO=1 AND id_contacto=#{0}
+</select>
+
+    <insert id="registrar" parameterType="com.cofar.hermes.rutero.models.Contacto">
+ INSERT INTO HER_RUT_CONTACTO
+(ID_MED_ESPE, ID_RUTERO, NRO, ORDEN, FECHA_VISITA, ESTADO)
+VALUES 
+(#{idMedEspe}, #{idRutero}, #{nro}, #{orden}, #{fechaVisita}, #{estado})
+</insert>
+
+    <update id="actualizar" parameterType="com.cofar.hermes.rutero.models.Contacto">
+   UPDATE HER_RUT_CONTACTO SET 
+id_med_espe=#{idMedEspe}, 
+id_rutero=#{idRutero}, 
+nro=#{nro}, 
+orden=#{orden}, 
+fecha_visita=#{fechaVisita}
+WHERE id_contacto=#{idContacto}
+
+</update>
+
+    <update id="eliminar" parameterType="java.lang.Integer">
+   UPDATE HER_RUT_CONTACTO SET estado=0 WHERE id_contacto=#{0}
+</update>
+</mapper>

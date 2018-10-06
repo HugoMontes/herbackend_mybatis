@@ -8,9 +8,9 @@ package com.cofar.hermes.kardex.models;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 import java.util.Date;
+import java.util.List;
 
 /**
- *
  * @author aduran
  */
 @JsonInclude(JsonInclude.Include.NON_DEFAULT)
@@ -18,7 +18,7 @@ public class LugarTrabajo {
 
     private Integer idLugarTrabajo;
     private Integer idSecretaria;
-    private Integer idDireccion;
+
     private Integer idMedico;
     private String descripcion;
     private Integer nroPacientes;
@@ -31,6 +31,28 @@ public class LugarTrabajo {
     private Date fechaRegistro;
     private Date fechaModificacion;
     private int estado;
+    private String nombreSecretaria;
+
+    private List<HorarioTrabajo> lsthorarioTrabajo;
+
+
+    public List<HorarioTrabajo> getLsthorarioTrabajo() {
+        return lsthorarioTrabajo;
+    }
+
+    public void setLsthorarioTrabajo(List<HorarioTrabajo> lsthorarioTrabajo) {
+        this.lsthorarioTrabajo = lsthorarioTrabajo;
+    }
+
+    public String getNombreSecretaria() {
+        return nombreSecretaria;
+    }
+
+    public void setNombreSecretaria(String nombreSecretaria) {
+        this.nombreSecretaria = nombreSecretaria;
+    }
+
+
 
     public Integer getNroPacientes() {
         return nroPacientes;
@@ -56,13 +78,13 @@ public class LugarTrabajo {
         this.idSecretaria = idSecretaria;
     }
 
-    public Integer getIdDireccion() {
-        return idDireccion;
-    }
-
-    public void setIdDireccion(Integer idDireccion) {
-        this.idDireccion = idDireccion;
-    }
+//    public Integer getIdDireccion() {
+//        return idDireccion;
+//    }
+//
+//    public void setIdDireccion(Integer idDireccion) {
+//        this.idDireccion = idDireccion;
+//    }
 
     public Integer getIdMedico() {
         return idMedico;

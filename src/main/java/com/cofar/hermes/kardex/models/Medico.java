@@ -22,15 +22,12 @@ import java.util.List;
 public class Medico implements Serializable {
 
     private Integer idMedico;
-//    private Integer idPerfilProfesional;
-//    private Integer idPerfilPsicografico;
-//    private Integer idPerfilPersonal;
+
     private Integer idEstadoCivil;
     private Integer idRegional;
     private String apPaterno;
     private String apMaterno;
     private String nombres;
-//  <  @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy", locale = "##default")
     private Date fechaNacimiento;
     private String telefono;
     private String celular;
@@ -43,18 +40,26 @@ public class Medico implements Serializable {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy@HH:mm:ss", locale = "##default")
     private Date fechaModificacion;
     private int estado;
-
     private List<Especialidad> lstEspecialidad;
     private List<Linea> lstLinea;
+
+    private List<LugarTrabajo> lstLugarTrabajo;
+
+
+    public List<LugarTrabajo> getLstLugarTrabajo() {
+        return lstLugarTrabajo;
+    }
+
+    public void setLstLugarTrabajo(List<LugarTrabajo> lstLugarTrabajo) {
+        this.lstLugarTrabajo = lstLugarTrabajo;
+    }
 
     public List<Especialidad> getLstEspecialidad() {
         return lstEspecialidad;
     }
-
     public void setLstEspecialidad(List<Especialidad> lstEspecialidad) {
         this.lstEspecialidad = lstEspecialidad;
     }
-
     public List<Linea> getLstLinea() {
         return lstLinea;
     }
@@ -110,7 +115,8 @@ public class Medico implements Serializable {
     public void setNombres(String nombres) {
         this.nombres = nombres;
     }
-//      @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy", locale = "##default")
+
+    //      @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy", locale = "##default")
     public Date getFechaNacimiento() {
         return fechaNacimiento;
     }
@@ -151,7 +157,6 @@ public class Medico implements Serializable {
         this.genero = genero;
     }
 
- 
 
     public Integer getUsuarioRegistro() {
         return usuarioRegistro;
