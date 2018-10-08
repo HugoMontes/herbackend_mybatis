@@ -57,6 +57,7 @@ public class PerfilPersonalController {
     public RegistrationResult adicionar(@RequestBody @Valid PerfilPersonal perfil) {
 
         LOGGER.info(" METHOD adicionarPerfilPersonal");
+        LOGGER.info(" PerfilPersonal: " + perfil);
         return perfilPersonalService.registrar(perfil);
     }
 

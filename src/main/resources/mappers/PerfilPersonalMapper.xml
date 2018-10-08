@@ -103,9 +103,9 @@
 
     <insert id="registrar" parameterType="com.cofar.hermes.kardex.models.PerfilPersonal">
         INSERT INTO HER_PERFIL_PERSONAL
-        (NOMBRE_CONYUGUE, NOMBRE_HIJOS_EDAD, ORIGEN_FAMILIA, GRUPOS_SOCIALES, AMIGOS, COMIDA_PREFERIDA, BEBIDA_PREFERIDA, MASCOTA, TIPO_MUSICA_PREFERIDA, INSTRUMENTO_PREFERIDO, GUSTOS_GENERALES, HOBBIES, USUARIO_REGISTRO, USUARIO_MODIFICACION, FECHA_REGISTRO, FECHA_MODIFICACION, ESTADO)
+        (ID_MEDICO, NOMBRE_CONYUGUE, NOMBRE_HIJOS_EDAD, ORIGEN_FAMILIA, GRUPOS_SOCIALES, AMIGOS, COMIDA_PREFERIDA, BEBIDA_PREFERIDA, MASCOTA, TIPO_MUSICA_PREFERIDA, INSTRUMENTO_PREFERIDO, GUSTOS_GENERALES, HOBBIES, USUARIO_REGISTRO, USUARIO_MODIFICACION, FECHA_REGISTRO, FECHA_MODIFICACION, ESTADO)
         VALUES
-            (#{nombreConyugue}, #{nombreHijosEdad}, #{origenFamilia}, #{gruposSociales}, #{amigos}, #{comidaPreferida},
+            (#{idMedico}, #{nombreConyugue}, #{nombreHijosEdad}, #{origenFamilia}, #{gruposSociales}, #{amigos}, #{comidaPreferida},
                                 #{bebidaPreferida}, #{mascota}, #{tipoMusicaPreferida}, #{instrumentoPreferido},
                                 #{gustosGenerales}, #{hobbies}, #{usuarioRegistro}, #{usuarioModificacion},
              sysdatetime(), sysdatetime(), 1)

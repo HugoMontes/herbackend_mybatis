@@ -188,4 +188,21 @@ public class PerfilPersonal {
         this.estado = estado;
     }
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "PerfilPersonal [idPerfilPersonal=" + idPerfilPersonal + ", idMedico=" + idMedico + ", nombreConyugue="
+				+ nombreConyugue + ", nombreHijosEdad=" + nombreHijosEdad + ", origenFamilia=" + origenFamilia
+				+ ", gruposSociales=" + gruposSociales + ", amigos=" + amigos + ", comidaPreferida=" + comidaPreferida
+				+ ", bebidaPreferida=" + bebidaPreferida + ", mascota=" + mascota + ", tipoMusicaPreferida="
+				+ tipoMusicaPreferida + ", instrumentoPreferido=" + instrumentoPreferido + ", gustosGenerales="
+				+ gustosGenerales + ", hobbies=" + hobbies + ", usuarioRegistro=" + usuarioRegistro
+				+ ", usuarioModificacion=" + usuarioModificacion + ", fechaRegistro=" + fechaRegistro
+				+ ", fechaModificacion=" + fechaModificacion + ", estado=" + estado + "]";
+	}
+    
+    
+
 }
