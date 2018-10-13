@@ -19,7 +19,7 @@ public class Turno {
     private String descripcion;
     private Date horaAtencionInicio;
     private Date horaAtencionFin;
-    private int estado;
+    private Integer estado;
 
 
     public Date getHoraAtencionInicio() {
@@ -55,11 +55,11 @@ public class Turno {
     }
 
 
-    public int getEstado() {
+    public Integer getEstado() {
         return estado;
     }
 
-    public void setEstado(int estado) {
+    public void setEstado(Integer estado) {
         this.estado = estado;
     }
 

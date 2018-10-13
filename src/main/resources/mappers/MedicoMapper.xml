@@ -24,7 +24,7 @@
         <result column="usuario_modificacion" property="usuarioModificacion"/>
         <result column="fecha_registro" property="fechaRegistro"/>
         <result column="fecha_modificacion" property="fechaModificacion"/>
-        <result column="estado" property="estado"/>
+         <result column="estado" property="estado"/>
 
     </resultMap>
 
@@ -95,9 +95,6 @@
         </if>
         <if test="genero != null">
             and genero =#{genero}
-        </if>
-        <if test="nombreHijosEdad != null">
-            and nombre_hijos_edad =#{nombreHijosEdad}
         </if>
         <if test="usuarioRegistro != null">
             and usuario_registro =#{usuarioRegistro}
@@ -171,8 +168,7 @@
         SELECT * FROM HER_MEDICO WHERE ESTADO=1 AND id_medico=#{0}
     </select>
 
-    <insert id="registrar" useGeneratedKeys="true" keyProperty="idMedico"
-            parameterType="com.cofar.hermes.kardex.models.Medico">
+    <insert id="registrar" useGeneratedKeys="true" keyProperty="idMedico" parameterType="com.cofar.hermes.kardex.models.Medico">
         INSERT INTO HER_MEDICO
         (ID_ESTADO_CIVIL, ID_REGIONAL, AP_PATERNO, AP_MATERNO, NOMBRES, FECHA_NACIMIENTO, TELEFONO, CELULAR,
         CORREO_ELECTRONICO, GENERO, USUARIO_REGISTRO, USUARIO_MODIFICACION, FECHA_REGISTRO, FECHA_MODIFICACION, ESTADO)
@@ -180,16 +176,7 @@
         (#{idEstadoCivil}, #{idRegional}, #{apPaterno}, #{apMaterno}, #{nombres}, #{fechaNacimiento}, #{telefono},
         #{celular}, #{correoElectronico}, #{genero}, #{usuarioRegistro}, #{usuarioModificacion},
         sysdatetime(),sysdatetime(), 1)
-        <!--        INSERT INTO HER_MEDICO
-        (ID_PERFIL_PROFESIONAL, ID_PERFIL_PSICOGRAFICO, ID_PERFIL_PERSONAL, ID_ESTADO_CIVIL, ID_REGIONAL, AP_PATERNO, AP_MATERNO, NOMBRES, FECHA_NACIMIENTO, TELEFONO, CELULAR, CORREO_ELECTRONICO, GENERO, NOMBRE_HIJOS_EDAD, USUARIO_REGISTRO, USUARIO_MODIFICACION, FECHA_REGISTRO, FECHA_MODIFICACION, ESTADO) 
-        VALUES 
-        (#{idPerfilProfesional}, #{idPerfilPsicografico}, #{idPerfilPersonal}, #{idEstadoCivil}, #{idRegional}, #{apPaterno}, #{apMaterno}, #{nombres}, #{fechaNacimiento}, #{telefono}, #{celular}, #{correoElectronico}, #{genero}, #{nombreHijosEdad}, #{usuarioRegistro}, #{usuarioModificacion}, sysdatetime(),sysdatetime(), 1)-->
 
-        <!--<selectKey resultType="java.lang.Integer" keyProperty="idMedico" order="AFTER">-->
-        <!--<![CDATA[-->
-        <!--SELECT IDENT_CURRENT('her_medico') as idMedico-->
-        <!--]]>-->
-        <!--</selectKey>-->
     </insert>
 
     <update id="actualizar" parameterType="com.cofar.hermes.kardex.models.Medico">
@@ -205,8 +192,7 @@
         celular=#{celular}, 
         correo_electronico=#{correoElectronico}, 
         genero=#{genero}, 
-        nombre_hijos_edad=#{nombreHijosEdad}, 
-        usuario_modificacion=#{usuarioModificacion}, 
+        usuario_modificacion=#{usuarioModificacion},
         fecha_modificacion=sysdatetime() 
         WHERE id_medico=#{idMedico}
 

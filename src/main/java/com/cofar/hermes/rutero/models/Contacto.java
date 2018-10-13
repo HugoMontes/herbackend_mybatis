@@ -15,7 +15,7 @@ private Integer idRutero;
 private int nro;
 private int orden;
 private Date fechaVisita;
-private int estado;
+private Integer estado;
 
 
 public Integer getIdContacto() 
@@ -78,12 +78,12 @@ public void setFechaVisita (Date fechaVisita)
      this.fechaVisita= fechaVisita;
 }
 
-public int getEstado() 
+public Integer getEstado()
 {
     return estado;
 }
 
-public void setEstado (int estado)
+public void setEstado (Integer estado)
 {
    this.estado= estado;
 }

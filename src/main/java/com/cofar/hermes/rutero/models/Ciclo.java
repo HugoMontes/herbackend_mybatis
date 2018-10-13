@@ -17,7 +17,7 @@ private Date fechaInicio;
 private Date fechaFin;
 private int nro;
 private Date fechaCiclo;
-private int estado;
+private Integer estado;
 
 
 public Integer getIdCiclo() 
@@ -100,12 +100,12 @@ public void setFechaCiclo (Date fechaCiclo)
      this.fechaCiclo= fechaCiclo;
 }
 
-public int getEstado() 
+public Integer getEstado()
 {
     return estado;
 }
 
-public void setEstado (int estado)
+public void setEstado (Integer estado)
 {
    this.estado= estado;
 }

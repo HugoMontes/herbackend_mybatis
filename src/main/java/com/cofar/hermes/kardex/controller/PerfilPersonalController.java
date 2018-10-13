@@ -15,7 +15,6 @@ import javax.validation.Valid;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -43,7 +42,6 @@ public class PerfilPersonalController {
     @PostMapping("/listar")
     public List<PerfilPersonal> listarPerfilPersonal(@RequestBody @Valid PerfilPersonal perfil) {
         LOGGER.info(" METHOD listarPerfilPersonal_POST");
-
         return perfilPersonalService.listarPorParametros(perfil);
     }
 
@@ -57,7 +55,6 @@ public class PerfilPersonalController {
     public RegistrationResult adicionar(@RequestBody @Valid PerfilPersonal perfil) {
 
         LOGGER.info(" METHOD adicionarPerfilPersonal");
-        LOGGER.info(" PerfilPersonal: " + perfil);
         return perfilPersonalService.registrar(perfil);
     }
 

@@ -22,12 +22,12 @@ import java.util.List;
 public class Medico implements Serializable {
 
     private Integer idMedico;
-
     private Integer idEstadoCivil;
     private Integer idRegional;
     private String apPaterno;
     private String apMaterno;
     private String nombres;
+//  @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy", locale = "##default")
     private Date fechaNacimiento;
     private String telefono;
     private String celular;
@@ -39,7 +39,7 @@ public class Medico implements Serializable {
     private Date fechaRegistro;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy@HH:mm:ss", locale = "##default")
     private Date fechaModificacion;
-    private int estado;
+    private Integer estado;
     private List<Especialidad> lstEspecialidad;
     private List<Linea> lstLinea;
 
@@ -190,11 +190,11 @@ public class Medico implements Serializable {
         this.fechaModificacion = fechaModificacion;
     }
 
-    public int getEstado() {
+    public Integer getEstado() {
         return estado;
     }
 
-    public void setEstado(int estado) {
+    public void setEstado(Integer estado) {
         this.estado = estado;
     }
 

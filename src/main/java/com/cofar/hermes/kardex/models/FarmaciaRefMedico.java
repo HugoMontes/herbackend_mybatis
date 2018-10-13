@@ -17,7 +17,7 @@ public class FarmaciaRefMedico {
     private Integer idFarmaciaRefMedico;
     private Integer idMedico;
     private Integer idFarmaciaReferencia;
-    private int estado;
+    private Integer estado;
 
     public Integer getIdFarmaciaRefMedico() {
         return idFarmaciaRefMedico;
@@ -43,11 +43,11 @@ public class FarmaciaRefMedico {
         this.idFarmaciaReferencia = idFarmaciaReferencia;
     }
 
-    public int getEstado() {
+    public Integer getEstado() {
         return estado;
     }
 
-    public void setEstado(int estado) {
+    public void setEstado(Integer estado) {
         this.estado = estado;
     }
 

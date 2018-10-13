@@ -10,13 +10,14 @@ import com.cofar.hermes.core.util.RegistrationResult;
 import com.cofar.hermes.kardex.models.PerfilPersonal;
 import com.cofar.hermes.kardex.repository.PerfilPersonalRepository;
 import com.cofar.hermes.kardex.service.PerfilPersonalService;
+
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
- *
  * @author aduran
  */
 @Service
@@ -27,6 +28,7 @@ public class PerfilPersonalServiceImpl implements PerfilPersonalService {
     private PerfilPersonalRepository perfilPersonalRepository;
     @Autowired
     private AdmUsuarioServiceLoguin loginService;
+
     @Override
     public RegistrationResult registrar(PerfilPersonal perfil) {
         RegistrationResult res = new RegistrationResult();
@@ -50,7 +52,6 @@ public class PerfilPersonalServiceImpl implements PerfilPersonalService {
 
     @Override
     public List<PerfilPersonal> listarPorParametros(PerfilPersonal perfil) {
-        System.out.println("PF : "+perfil.getIdMedico());
         return perfilPersonalRepository.listarPorParametros(perfil);
     }
 

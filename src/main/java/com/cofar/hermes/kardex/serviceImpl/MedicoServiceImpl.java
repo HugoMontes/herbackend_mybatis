@@ -7,7 +7,10 @@ package com.cofar.hermes.kardex.serviceImpl;
 
 import com.cofar.hermes.core.service.AdmUsuarioServiceLoguin;
 import com.cofar.hermes.core.util.RegistrationResult;
+import com.cofar.hermes.kardex.models.Especialidad;
+import com.cofar.hermes.kardex.models.MedEspe;
 import com.cofar.hermes.kardex.models.Medico;
+import com.cofar.hermes.kardex.repository.MedEspeRepository;
 import com.cofar.hermes.kardex.repository.MedicoRepository;
 import com.cofar.hermes.kardex.service.MedicoService;
 import lombok.Builder;
@@ -32,15 +35,29 @@ public class MedicoServiceImpl implements MedicoService {
     @Autowired
     private MedicoRepository medicoRepository;
     @Autowired
+    private MedEspeRepository medicoEspeRepository;
+
+    @Autowired
     private AdmUsuarioServiceLoguin loginService;
 
     @Override
     public RegistrationResult registrar(Medico medico) {
         RegistrationResult res = new RegistrationResult();
         res.setCode(medicoRepository.registrar(medico));
-        HashMap params = new HashMap();
-        params.put("idMedico", medico.getIdMedico());
-        res.setParams(params);
+//        HashMap params = new HashMap();
+//        params.put("idMedico", medico.getIdMedico());
+//        res.setParams(params);
+
+        if (!medico.getLstEspecialidad().isEmpty()) {
+            List<Especialidad> especialidades = medico.getLstEspecialidad();
+            for (Especialidad espe : especialidades) {
+                MedEspe medicoEspecialidad = new MedEspe();
+                medicoEspecialidad.setUsuarioRegistro(1);
+                medicoEspecialidad.setIdMedico(medico.getIdMedico());
+                medicoEspecialidad.setIdEspecialidad(espe.getIdEspecialidad());
+                medicoEspeRepository.registrar(medicoEspecialidad);
+            }
+        }
         res.setMessage("Se ha Registrado Medico Correctamente ");
         return res;
     }
@@ -49,6 +66,19 @@ public class MedicoServiceImpl implements MedicoService {
     public RegistrationResult actualizar(Medico medico) {
         RegistrationResult res = new RegistrationResult();
         res.setCode(medicoRepository.actualizar(medico));
+
+//
+//        if (!medico.getLstEspecialidad().isEmpty()) {
+//            List<Especialidad> especialidades = medico.getLstEspecialidad();
+//            for (Especialidad espe : especialidades) {
+//                MedEspe medicoEspecialidad = new MedEspe();
+//                medicoEspecialidad.setIdMedico(medico.getIdMedico());
+//                medicoEspecialidad.setUsuarioModificacion(1);
+//                medicoEspecialidad.setIdEspecialidad(espe.getIdEspecialidad());
+//                medicoEspeRepository.actualizar(medicoEspecialidad);
+//            }
+//
+//        }
         res.setMessage("Se ha Actualizado Medico Correctamente ");
         return res;
     }

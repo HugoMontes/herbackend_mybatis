@@ -17,7 +17,7 @@ public class LineaEspecialidad {
     private Integer idLineaEspecialidad;
     private Integer idEspecialidad;
     private Integer idLinea;
-    private int estado;
+    private Integer estado;
 
     public Integer getIdLineaEspecialidad() {
         return idLineaEspecialidad;
@@ -43,11 +43,11 @@ public class LineaEspecialidad {
         this.idLinea = idLinea;
     }
 
-    public int getEstado() {
+    public Integer getEstado() {
         return estado;
     }
 
-    public void setEstado(int estado) {
+    public void setEstado(Integer estado) {
         this.estado = estado;
     }
 

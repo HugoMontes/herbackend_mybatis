@@ -7,10 +7,10 @@ package com.cofar.hermes.kardex.models;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 
+import javax.print.attribute.IntegerSyntax;
 import java.util.Date;
 
 /**
- *
  * @author aduran
  */
 @JsonInclude(JsonInclude.Include.NON_DEFAULT)
@@ -34,7 +34,8 @@ public class PerfilPersonal {
     private Integer usuarioModificacion;
     private Date fechaRegistro;
     private Date fechaModificacion;
-    private int estado;
+    private Integer estado;
+
 
     public Integer getIdMedico() {
         return idMedico;
@@ -180,29 +181,12 @@ public class PerfilPersonal {
         this.fechaModificacion = fechaModificacion;
     }
 
-    public int getEstado() {
+    public Integer getEstado() {
         return estado;
     }
 
-    public void setEstado(int estado) {
+    public void setEstado(Integer estado) {
         this.estado = estado;
     }
-
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
-	@Override
-	public String toString() {
-		return "PerfilPersonal [idPerfilPersonal=" + idPerfilPersonal + ", idMedico=" + idMedico + ", nombreConyugue="
-				+ nombreConyugue + ", nombreHijosEdad=" + nombreHijosEdad + ", origenFamilia=" + origenFamilia
-				+ ", gruposSociales=" + gruposSociales + ", amigos=" + amigos + ", comidaPreferida=" + comidaPreferida
-				+ ", bebidaPreferida=" + bebidaPreferida + ", mascota=" + mascota + ", tipoMusicaPreferida="
-				+ tipoMusicaPreferida + ", instrumentoPreferido=" + instrumentoPreferido + ", gustosGenerales="
-				+ gustosGenerales + ", hobbies=" + hobbies + ", usuarioRegistro=" + usuarioRegistro
-				+ ", usuarioModificacion=" + usuarioModificacion + ", fechaRegistro=" + fechaRegistro
-				+ ", fechaModificacion=" + fechaModificacion + ", estado=" + estado + "]";
-	}
-    
-    
 
 }

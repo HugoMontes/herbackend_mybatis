@@ -93,7 +93,7 @@ public class MedicoController {
 
     @PostMapping("/actualizar")
     public RegistrationResult actualizar(@RequestBody @Valid Medico medico) {
-        LOGGER.info(" METHOD adicionarPerfilPersonal");
+        LOGGER.info(" METHOD  actualizar ");
         return medicoService.actualizar(medico);
     }
 

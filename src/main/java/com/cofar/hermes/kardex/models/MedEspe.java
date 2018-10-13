@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.cofar.hermes.kardex.models;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -10,19 +5,32 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import java.util.Date;
 
 /**
- * @author aduran
- */
-@JsonInclude(JsonInclude.Include.NON_DEFAULT)
-public class PerfilPsicografico {
+ * @author Al?a?o Dur?n
+ **/
 
-    private Integer idPerfilPsicografico;
+@JsonInclude(JsonInclude.Include.NON_DEFAULT)
+public class MedEspe {
+
+    private Integer idMedEspe;
     private Integer idMedico;
-    private String descripcion;
+    private Integer idEspecialidad;
+    private Integer idCategoria;
+    private Date fechaObtencionEspecialidad;
+    private String lugarObtencionEspecialidad;
     private Integer usuarioRegistro;
     private Integer usuarioModificacion;
     private Date fechaRegistro;
     private Date fechaModificacion;
     private Integer estado;
+
+
+    public Integer getIdMedEspe() {
+        return idMedEspe;
+    }
+
+    public void setIdMedEspe(Integer idMedEspe) {
+        this.idMedEspe = idMedEspe;
+    }
 
     public Integer getIdMedico() {
         return idMedico;
@@ -32,20 +40,36 @@ public class PerfilPsicografico {
         this.idMedico = idMedico;
     }
 
-    public Integer getIdPerfilPsicografico() {
-        return idPerfilPsicografico;
+    public Integer getIdEspecialidad() {
+        return idEspecialidad;
     }
 
-    public void setIdPerfilPsicografico(Integer idPerfilPsicografico) {
-        this.idPerfilPsicografico = idPerfilPsicografico;
+    public void setIdEspecialidad(Integer idEspecialidad) {
+        this.idEspecialidad = idEspecialidad;
     }
 
-    public String getDescripcion() {
-        return descripcion;
+    public Integer getIdCategoria() {
+        return idCategoria;
     }
 
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
+    public void setIdCategoria(Integer idCategoria) {
+        this.idCategoria = idCategoria;
+    }
+
+    public Date getFechaObtencionEspecialidad() {
+        return fechaObtencionEspecialidad;
+    }
+
+    public void setFechaObtencionEspecialidad(Date fechaObtencionEspecialidad) {
+        this.fechaObtencionEspecialidad = fechaObtencionEspecialidad;
+    }
+
+    public String getLugarObtencionEspecialidad() {
+        return lugarObtencionEspecialidad;
+    }
+
+    public void setLugarObtencionEspecialidad(String lugarObtencionEspecialidad) {
+        this.lugarObtencionEspecialidad = lugarObtencionEspecialidad;
     }
 
     public Integer getUsuarioRegistro() {

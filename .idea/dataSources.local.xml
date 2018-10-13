@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="dataSourceStorageLocal">
+    <data-source name="HERMES-[172.16.10.230]-DEV" uuid="1f6829c1-707d-42d2-998e-44ab10284b3f">
+      <database-info product="Microsoft SQL Server" version="14.00.3038" jdbc-version="4.2" driver-name="Microsoft JDBC Driver 7.0 for SQL Server" driver-version="7.0.0.0">
+        <extra-name-characters>$#@</extra-name-characters>
+        <identifier-quote-string>&quot;</identifier-quote-string>
+      </database-info>
+      <case-sensitivity plain-identifiers="mixed" quoted-identifiers="mixed" />
+      <secret-storage>master_key</secret-storage>
+      <user-name>hermes</user-name>
+      <introspection-schemas>hermes2:dbo</introspection-schemas>
+    </data-source>
+  </component>
+</project>

@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--*
+    *
+    *  @author Al?a?o Dur?n
+    *
+    *-->
+
+<mapper namespace="com.cofar.hermes.kardex.repository.MedEspeRepository">
+    <resultMap id="MedEspeMap" type="com.cofar.hermes.kardex.models.MedEspe">
+
+        <id column="id_med_espe" property="idMedEspe"/>
+        <result column="id_medico" property="idMedico"/>
+        <result column="id_especialidad" property="idEspecialidad"/>
+        <result column="id_categoria" property="idCategoria"/>
+        <result column="fecha_obtencion_especialidad" property="fechaObtencionEspecialidad"/>
+        <result column="lugar_obtencion_especialidad" property="lugarObtencionEspecialidad"/>
+        <result column="usuario_registro" property="usuarioRegistro"/>
+        <result column="usuario_modificacion" property="usuarioModificacion"/>
+        <!--<result column="fecha_registro" property="fechaRegistro"/>-->
+        <!--<result column="fecha_modificacion" property="fechaModificacion"/>-->
+        <result column="estado" property="estado"/>
+    </resultMap>
+
+    <select id="listarPorParametros" resultMap="MedEspeMap" parameterType="com.cofar.hermes.kardex.models.MedEspe">
+        SELECT * FROM HER_MED_ESPE WHERE 1=1
+        <if test="idMedico != null">
+            and id_medico =#{idMedico}
+        </if>
+        <if test="idEspecialidad != null">
+            and id_especialidad =#{idEspecialidad}
+        </if>
+        <if test="idCategoria != null">
+            and id_categoria =#{idCategoria}
+        </if>
+        <if test="fechaObtencionEspecialidad != null">
+            and fecha_obtencion_especialidad =#{fechaObtencionEspecialidad}
+        </if>
+        <if test="lugarObtencionEspecialidad != null">
+            and lugar_obtencion_especialidad =#{lugarObtencionEspecialidad}
+        </if>
+        <if test="usuarioRegistro != null">
+            and usuario_registro =#{usuarioRegistro}
+        </if>
+        <if test="usuarioModificacion != null">
+            and usuario_modificacion =#{usuarioModificacion}
+        </if>
+        <if test="fechaRegistro != null">
+            and fecha_registro =#{fechaRegistro}
+        </if>
+        <if test="fechaModificacion != null">
+            and fecha_modificacion =#{fechaModificacion}
+        </if>
+        <if test="estado != null">
+            and estado =#{estado}
+        </if>
+
+    </select>
+
+    <select id="listar" resultMap="MedEspeMap">
+        SELECT *
+        FROM HER_MED_ESPE
+        where ESTADO = 1
+    </select>
+
+
+    <select id="obtener" resultMap="MedEspeMap" parameterType="java.lang.Integer">
+        SELECT *
+        FROM HER_MED_ESPE
+        WHERE id_med_espe = #{0}
+    </select>
+
+    <insert id="registrar" parameterType="com.cofar.hermes.kardex.models.MedEspe">
+        INSERT INTO HER_MED_ESPE
+        (ID_MEDICO, ID_ESPECIALIDAD, ID_CATEGORIA, FECHA_OBTENCION_ESPECIALIDAD, LUGAR_OBTENCION_ESPECIALIDAD, USUARIO_REGISTRO, USUARIO_MODIFICACION, FECHA_REGISTRO, FECHA_MODIFICACION, ESTADO)
+        VALUES
+            (#{idMedico}, #{idEspecialidad}, #{idCategoria}, #{fechaObtencionEspecialidad},
+             #{lugarObtencionEspecialidad}, #{usuarioRegistro}, #{usuarioModificacion}, sysdatetime(),
+             sysdatetime(), 1)
+    </insert>
+
+    <update id="actualizar" parameterType="com.cofar.hermes.kardex.models.MedEspe">
+        UPDATE HER_MED_ESPE
+        SET
+        <if test="idMedico != null">
+            id_medico = #{idMedico},
+        </if>
+        <if test="idEspecialidad != null">
+            id_especialidad = #{idEspecialidad},
+        </if>
+        <if test="idCategoria != null">
+            id_categoria = #{idCategoria},
+        </if>
+        <if test="fechaObtencionEspecialidad != null">
+            fecha_obtencion_especialidad = #{fechaObtencionEspecialidad},
+        </if>
+        <if test="lugarObtencionEspecialidad != null">
+            lugar_obtencion_especialidad = #{lugarObtencionEspecialidad},
+        </if>
+        usuario_modificacion = #{usuarioModificacion},
+        fecha_modificacion = sysdatetime()
+        WHERE id_med_espe = #{idMedEspe}
+
+    </update>
+
+    <update id="eliminar" parameterType="java.lang.Integer">
+        DELETE FROM HER_MED_ESPE
+        WHERE id_med_espe = #{0}
+    </update>
+</mapper>

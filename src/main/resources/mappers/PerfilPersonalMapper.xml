@@ -30,65 +30,67 @@
         <result column="estado" property="estado"/>
     </resultMap>
 
-    <select id="listarPorParametros" resultMap="PerfilPersonalMap" parameterType="com.cofar.hermes.kardex.models.PerfilPersonal">
+    <select id="listarPorParametros" resultMap="PerfilPersonalMap"
+            parameterType="com.cofar.hermes.kardex.models.PerfilPersonal">
         SELECT * FROM HER_PERFIL_PERSONAL WHERE 1=1
-        <if test="nombreConyugue != null">
-            and nombre_conyugue =#{nombreConyugue}
-        </if>
         <if test="idMedico != null">
-            and id_medico =#{idMedico}
+            and id_medico = #{idMedico}
+        </if>
+        <if test="nombreConyugue != null">
+            and nombre_conyugue like #{nombreConyugue}
+        </if>
+        <if test="nombreHijosEdad != null">
+            and nombre_hijos_edad like #{nombreHijosEdad}
+        </if>
+        <if test="origenFamilia != null">
+            and origen_familia like #{origenFamilia}
+        </if>
+        <if test="gruposSociales != null">
+            and grupos_sociales like #{gruposSociales}
+        </if>
+        <if test="amigos != null">
+            and amigos like #{amigos}
+        </if>
+        <if test="comidaPreferida != null">
+            and comida_preferida like #{comidaPreferida}
+        </if>
+        <if test="bebidaPreferida != null">
+            and bebida_preferida like #{bebidaPreferida}
+        </if>
+        <if test="mascota != null">
+            and mascota like #{mascota}
+        </if>
+        <if test="tipoMusicaPreferida != null">
+            and tipo_musica_preferida like #{tipoMusicaPreferida}
+        </if>
+        <if test="instrumentoPreferido != null">
+            and instrumento_preferido like #{instrumentoPreferido}
+        </if>
+        <if test="gustosGenerales != null">
+            and gustos_generales like #{gustosGenerales}
+        </if>
+        <if test="hobbies != null">
+            and hobbies like #{hobbies}
+        </if>
+        <if test="usuarioRegistro != null">
+            and usuario_registro =#{usuarioRegistro}
+        </if>
+        <if test="usuarioModificacion != null">
+            and usuario_modificacion =#{usuarioModificacion}
+        </if>
+        <if test="fechaRegistro != null">
+            and fecha_registro =#{fechaRegistro}
+        </if>
+        <if test="fechaModificacion != null">
+            and fecha_modificacion =#{fechaModificacion}
+        </if>
+        <if test="estado != null">
+            and estado =#{estado}
         </if>
 
-        <!--<if test="nombreHijosEdad != null">-->
-            <!--and nombre_hijos_edad =#{nombreHijosEdad}-->
-        <!--</if>-->
-        <!--<if test="origenFamilia != null">-->
-            <!--and origen_familia =#{origenFamilia}-->
-        <!--</if>-->
-        <!--<if test="gruposSociales != null">-->
-            <!--and grupos_sociales =#{gruposSociales}-->
-        <!--</if>-->
-        <!--<if test="amigos != null">-->
-            <!--and amigos =#{amigos}-->
-        <!--</if>-->
-        <!--<if test="comidaPreferida != null">-->
-            <!--and comida_preferida =#{comidaPreferida}-->
-        <!--</if>-->
-        <!--<if test="bebidaPreferida != null">-->
-            <!--and bebida_preferida =#{bebidaPreferida}-->
-        <!--</if>-->
-        <!--<if test="mascota != null">-->
-            <!--and mascota =#{mascota}-->
-        <!--</if>-->
-        <!--<if test="tipoMusicaPreferida != null">-->
-            <!--and tipo_musica_preferida =#{tipoMusicaPreferida}-->
-        <!--</if>-->
-        <!--<if test="instrumentoPreferido != null">-->
-            <!--and instrumento_preferido =#{instrumentoPreferido}-->
-        <!--</if>-->
-        <!--<if test="gustosGenerales != null">-->
-            <!--and gustos_generales =#{gustosGenerales}-->
-        <!--</if>-->
-        <!--<if test="hobbies != null">-->
-            <!--and hobbies =#{hobbies}-->
-        <!--</if>-->
-        <!--<if test="usuarioRegistro != null">-->
-            <!--and usuario_registro =#{usuarioRegistro}-->
-        <!--</if>-->
-        <!--<if test="usuarioModificacion != null">-->
-            <!--and usuario_modificacion =#{usuarioModificacion}-->
-        <!--</if>-->
-        <!--<if test="fechaRegistro != null">-->
-            <!--and fecha_registro =#{fechaRegistro}-->
-        <!--</if>-->
-        <!--<if test="fechaModificacion != null">-->
-            <!--and fecha_modificacion =#{fechaModificacion}-->
-        <!--</if>-->
-        <!--<if test="estado != null">-->
-            <!--and estado =#{estado}-->
-        <!--</if>-->
 
     </select>
+
 
     <select id="listar" resultMap="PerfilPersonalMap">
         SELECT *
@@ -105,15 +107,17 @@
         INSERT INTO HER_PERFIL_PERSONAL
         (ID_MEDICO, NOMBRE_CONYUGUE, NOMBRE_HIJOS_EDAD, ORIGEN_FAMILIA, GRUPOS_SOCIALES, AMIGOS, COMIDA_PREFERIDA, BEBIDA_PREFERIDA, MASCOTA, TIPO_MUSICA_PREFERIDA, INSTRUMENTO_PREFERIDO, GUSTOS_GENERALES, HOBBIES, USUARIO_REGISTRO, USUARIO_MODIFICACION, FECHA_REGISTRO, FECHA_MODIFICACION, ESTADO)
         VALUES
-            (#{idMedico}, #{nombreConyugue}, #{nombreHijosEdad}, #{origenFamilia}, #{gruposSociales}, #{amigos}, #{comidaPreferida},
-                                #{bebidaPreferida}, #{mascota}, #{tipoMusicaPreferida}, #{instrumentoPreferido},
-                                #{gustosGenerales}, #{hobbies}, #{usuarioRegistro}, #{usuarioModificacion},
+            (#{idMedico}, #{nombreConyugue}, #{nombreHijosEdad}, #{origenFamilia}, #{gruposSociales}, #{amigos},
+                          #{comidaPreferida},
+                          #{bebidaPreferida}, #{mascota}, #{tipoMusicaPreferida}, #{instrumentoPreferido},
+             #{gustosGenerales}, #{hobbies}, #{usuarioRegistro}, #{usuarioModificacion},
              sysdatetime(), sysdatetime(), 1)
     </insert>
 
     <update id="actualizar" parameterType="com.cofar.hermes.kardex.models.PerfilPersonal">
         UPDATE HER_PERFIL_PERSONAL
         SET
+            id_medico             = #{idMedico},
             nombre_conyugue       = #{nombreConyugue},
             nombre_hijos_edad     = #{nombreHijosEdad},
             origen_familia        = #{origenFamilia},

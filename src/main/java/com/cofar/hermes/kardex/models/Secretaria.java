@@ -29,7 +29,7 @@ public class Secretaria {
     private Integer usuarioModificacion;
     private Date fechaRegistro;
     private Date fechaModificacion;
-    private int estado;
+    private Integer estado;
 
     public Integer getIdSecretaria() {
         return idSecretaria;
@@ -135,11 +135,11 @@ public class Secretaria {
         this.fechaModificacion = fechaModificacion;
     }
 
-    public int getEstado() {
+    public Integer getEstado() {
         return estado;
     }
 
-    public void setEstado(int estado) {
+    public void setEstado(Integer estado) {
         this.estado = estado;
     }
 }

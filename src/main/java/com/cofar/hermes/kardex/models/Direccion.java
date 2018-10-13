@@ -26,13 +26,21 @@ public class Direccion {
     private Integer usuarioModificacion;
     private Date fechaRegistro;
     private Date fechaModificacion;
-    private int estado;
+    private Integer estado;
 
-    public int getEstado() {
+    public Integer getIdLugarTrabajo() {
+        return idLugarTrabajo;
+    }
+
+    public void setIdLugarTrabajo(Integer idLugarTrabajo) {
+        this.idLugarTrabajo = idLugarTrabajo;
+    }
+
+    public Integer getEstado() {
         return estado;
     }
 
-    public void setEstado(int estado) {
+    public void setEstado(Integer estado) {
         this.estado = estado;
     }
 
